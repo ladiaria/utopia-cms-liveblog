@@ -1,0 +1,2 @@
+recursive-include utopia_cms_liveblog/locale *
+recursive-include utopia_cms_liveblog/templates *

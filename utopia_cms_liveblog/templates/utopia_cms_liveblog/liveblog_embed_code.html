@@ -1,0 +1,10 @@
+<style>
+  #liveblog-iframe {
+    width: 1px;
+    min-width: 100%;
+  }
+</style>
+<script src="//cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.min.js"></script>
+<script src="{{ object.environment.url }}/embed.js" defer></script>
+<iframe id="liveblog-iframe" src="{{ object.url }}" frameborder="0" allowfullscreen
+        onload="iFrameResize({ log: false }, '#liveblog-iframe');"></iframe>

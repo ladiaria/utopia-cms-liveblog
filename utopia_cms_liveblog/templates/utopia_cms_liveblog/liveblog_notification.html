@@ -1,0 +1,7 @@
+<div class="breaking-notice">
+  <div class="container">
+    <span class="msg-title">Transmitiendo en vivo:</span>
+      <a class="msg-link" href="{% if liveblog.notification_url %}{{ liveblog.notification_url }}{% else %}{{ liveblog.get_absolute_url }}{% endif %}">{{ liveblog.notification_text|default:liveblog.title }}</a>
+    <span class="btn-close" data-object="liveblogs/liveblog" data-id="{{ liveblog.id }}">&times;</span>
+  </div>
+</div>
