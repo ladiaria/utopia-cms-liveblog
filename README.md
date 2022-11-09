@@ -3,4 +3,6 @@ SourceFabric Live Blog integration for utopia-cms
 
 # Features
 
-TODO: complete-me
+ * Live Blogs metadata (url, environment) can be stored in models to then be shown embeded in the site.
+
+TODO: complete-me with more features
