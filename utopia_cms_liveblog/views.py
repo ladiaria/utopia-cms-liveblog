@@ -1,12 +1,21 @@
+from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView
 from django.views.decorators.cache import never_cache
+from django.shortcuts import render
 
-from utopia_cms_liveblog.models import LiveBlog
+from .models import LiveBlog
 
 
-class LiveBlogList(ListView):
-    model = LiveBlog
+def liveblog_list(request):
+    paginator, page = Paginator(LiveBlog.objects.all(), 10), request.GET.get('page')
+    try:
+        pager = paginator.page(page)
+    except PageNotAnInteger:
+        pager = paginator.page(1)
+    except (EmptyPage, InvalidPage):
+        pager = paginator.page(paginator.num_pages)
+    return render(request, "utopia_cms_liveblog/liveblog_list.html", {"pager": pager})
 
 
 class LiveBlogDetail(DetailView):

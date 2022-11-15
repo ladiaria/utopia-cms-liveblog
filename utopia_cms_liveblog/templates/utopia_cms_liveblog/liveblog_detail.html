@@ -1,4 +1,7 @@
 {% extends "base.html" %}
 {% load liveblog_tags %}
 
-{% block content %}{% liveblog_embed_code object %}{% endblock %}
+{% block content %}
+  {% if object.image %}<img src="{{ object.image.get_fullscreen_url }}">{% endif %}
+  {% liveblog_embed_code object %}
+{% endblock %}

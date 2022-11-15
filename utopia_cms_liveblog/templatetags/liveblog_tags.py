@@ -22,5 +22,8 @@ def render_liveblog_notification(context):
 
 
 @register.simple_tag
-def liveblog_embed_code(liveblog_obj):
-    return render_to_string('utopia_cms_liveblog/liveblog_embed_code.html', {"object": liveblog_obj})
+def liveblog_embed_code(liveblog_obj, disable_iframe_resizer=False):
+    return render_to_string(
+        'utopia_cms_liveblog/liveblog_embed_code.html',
+        {"object": liveblog_obj, "disable_iframe_resizer": disable_iframe_resizer},
+    )

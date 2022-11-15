@@ -1,4 +1,5 @@
 from autoslug.fields import AutoSlugField
+from photologue.models import Gallery, Photo
 
 from django.db import models
 from django.core.urlresolvers import reverse
@@ -24,6 +25,7 @@ class LiveBlog(models.Model):
     slug = AutoSlugField(populate_from="title", always_update=True, null=True, blank=True)
     url = models.URLField()
     active = models.BooleanField(_("active"), default=False)
+    image = models.ForeignKey(Photo, verbose_name=_("photo"), blank=True, null=True)
     access_type = models.CharField(_("access"), max_length=1, choices=LIVE_EMBED_EVENT_ACCESS_TYPES, default='s')
     in_home = models.BooleanField(_("featured in home"), default=False)
     notification = models.BooleanField(_("articles notification"), default=False)

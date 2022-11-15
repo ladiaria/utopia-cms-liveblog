@@ -1,9 +1,22 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
   <ul>
-    {% for obj in object_list %}
-      <li><a href="{{ obj.get_absolute_url }}" title="{{ obj }}">{{ obj }}</a></li>
+    {% for obj in pager.object_list %}
+      <li>
+        {% if obj.image %}
+          <a href="{{ obj.get_absolute_url }}" title="{{ obj }}">
+            <img src="{{ obj.image.get_thumbnail_url }}">
+          </a>
+        {% endif %}
+        <a href="{{ obj.get_absolute_url }}" title="{{ obj }}">{{ obj }}</a>
+      </li>
     {% endfor %}
   </ul>
+  {% if pager.has_other_pages %}
+    <div class="align-center pagination-container">
+      {% include "pagination.html" with page_param='page' previous_label=_('Previous') next_label=_('Next page') %}
+    </div>
+  {% endif %}
 {% endblock %}

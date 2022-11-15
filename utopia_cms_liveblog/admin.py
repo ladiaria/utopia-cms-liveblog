@@ -12,6 +12,7 @@ class EnvironmentAdmin(admin.ModelAdmin):
 class LiveBlogAdmin(admin.ModelAdmin):
     list_display = ("id", "environment", "title", "url", "access_type", "in_home", "notification")
     list_editable = ("title", )
+    raw_id_fields = ("image", )
 
 
 admin.site.register(Environment, EnvironmentAdmin)

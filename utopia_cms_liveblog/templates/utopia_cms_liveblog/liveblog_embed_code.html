@@ -1,10 +1,21 @@
-<style>
-  #liveblog-iframe {
-    width: 1px;
-    min-width: 100%;
-  }
-</style>
-<script src="//cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.min.js"></script>
+{# TODO: default dimensions when resizer is disabled #}
+{% if not disable_iframe_resizer %}
+  <style>
+    #liveblog-iframe {
+      width: 1px;
+      min-width: 100%;
+    }
+  </style>
+  <script src="//cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.min.js"></script>
+{% endif %}
 <script src="{{ object.environment.url }}/embed.js" defer></script>
-<iframe id="liveblog-iframe" src="{{ object.url }}" frameborder="0" allowfullscreen
-        onload="iFrameResize({ log: false }, '#liveblog-iframe');"></iframe>
+{% spaceless %}
+  <iframe id="liveblog-iframe" src="{{ object.url }}" frameborder="0" allowfullscreen
+    {% if disable_iframe_resizer %}
+      width="100%" height="600"
+    {% else %}
+      onload="iFrameResize({ log: false }, '#liveblog-iframe');"
+    {% endif %}
+  >
+  </iframe>
+{% endspaceless %}

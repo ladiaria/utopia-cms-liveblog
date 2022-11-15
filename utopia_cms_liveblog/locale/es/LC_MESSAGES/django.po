@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-09 11:51-0300\n"
+"POT-Creation-Date: 2022-11-15 14:43-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,54 +17,67 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: utopia_cms_liveblog/apps.py:7
 msgid "Live Blogs"
-msgstr ""
+msgstr "Blogs en vivo"
 
-#: utopia_cms_liveblog/models.py:11
+#: utopia_cms_liveblog/models.py:12
 msgid "name"
 msgstr "nombre"
 
-#: utopia_cms_liveblog/models.py:15
+#: utopia_cms_liveblog/models.py:16
 msgid "environment"
 msgstr "ambiente"
 
-#: utopia_cms_liveblog/models.py:23
+#: utopia_cms_liveblog/models.py:24
 msgid "title"
 msgstr "título"
 
-#: utopia_cms_liveblog/models.py:26
+#: utopia_cms_liveblog/models.py:27
 msgid "active"
 msgstr "activo"
 
-#: utopia_cms_liveblog/models.py:27
+#: utopia_cms_liveblog/models.py:28
+msgid "photo"
+msgstr "foto"
+
+#: utopia_cms_liveblog/models.py:29
 msgid "access"
 msgstr "acceso"
 
-#: utopia_cms_liveblog/models.py:28
+#: utopia_cms_liveblog/models.py:30
 msgid "featured in home"
 msgstr "en portada"
 
-#: utopia_cms_liveblog/models.py:29
+#: utopia_cms_liveblog/models.py:31
 msgid "articles notification"
 msgstr "notificación en artículos"
 
-#: utopia_cms_liveblog/models.py:30
+#: utopia_cms_liveblog/models.py:32
 msgid "notification text"
 msgstr "texto de la notificación"
 
-#: utopia_cms_liveblog/models.py:31
+#: utopia_cms_liveblog/models.py:33
 msgid "notification url"
 msgstr "url de la notificación"
 
-#: utopia_cms_liveblog/models.py:34
+#: utopia_cms_liveblog/models.py:36
 msgid "live blog"
 msgstr "blog en vivo"
 
-#: utopia_cms_liveblog/models.py:35
+#: utopia_cms_liveblog/models.py:37
 msgid "live blogs"
 msgstr "blogs en vivo"
 
-#: utopia_cms_liveblog/models.py:52
+#: utopia_cms_liveblog/models.py:54
 msgid "Only one blog can be in home at the same time."
 msgstr "Solamente un blog en vivo puede estar en portada."
+
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:19
+msgid "Previous"
+msgstr "Anterior"
+
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:20
+msgid "Next page"
+msgstr "Siguiente"
