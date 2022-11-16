@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 14:43-0300\n"
+"POT-Creation-Date: 2022-11-16 16:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,43 +34,47 @@ msgstr "ambiente"
 msgid "title"
 msgstr "título"
 
-#: utopia_cms_liveblog/models.py:27
+#: utopia_cms_liveblog/models.py:26
+msgid "description"
+msgstr "descripción"
+
+#: utopia_cms_liveblog/models.py:28
 msgid "active"
 msgstr "activo"
 
-#: utopia_cms_liveblog/models.py:28
+#: utopia_cms_liveblog/models.py:29
 msgid "photo"
 msgstr "foto"
 
-#: utopia_cms_liveblog/models.py:29
+#: utopia_cms_liveblog/models.py:30
 msgid "access"
 msgstr "acceso"
 
-#: utopia_cms_liveblog/models.py:30
+#: utopia_cms_liveblog/models.py:31
 msgid "featured in home"
 msgstr "en portada"
 
-#: utopia_cms_liveblog/models.py:31
+#: utopia_cms_liveblog/models.py:32
 msgid "articles notification"
 msgstr "notificación en artículos"
 
-#: utopia_cms_liveblog/models.py:32
+#: utopia_cms_liveblog/models.py:33
 msgid "notification text"
 msgstr "texto de la notificación"
 
-#: utopia_cms_liveblog/models.py:33
+#: utopia_cms_liveblog/models.py:34
 msgid "notification url"
 msgstr "url de la notificación"
 
-#: utopia_cms_liveblog/models.py:36
+#: utopia_cms_liveblog/models.py:37
 msgid "live blog"
 msgstr "blog en vivo"
 
-#: utopia_cms_liveblog/models.py:37
+#: utopia_cms_liveblog/models.py:38
 msgid "live blogs"
 msgstr "blogs en vivo"
 
-#: utopia_cms_liveblog/models.py:54
+#: utopia_cms_liveblog/models.py:55
 msgid "Only one blog can be in home at the same time."
 msgstr "Solamente un blog en vivo puede estar en portada."
 
@@ -78,6 +82,10 @@ msgstr "Solamente un blog en vivo puede estar en portada."
 msgid "Previous"
 msgstr "Anterior"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:20
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:19
 msgid "Next page"
 msgstr "Siguiente"
+
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_notification.html:5
+msgid "LIVE"
+msgstr "EN VIVO"

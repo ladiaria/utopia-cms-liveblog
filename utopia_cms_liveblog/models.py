@@ -23,6 +23,7 @@ class LiveBlog(models.Model):
     environment = models.ForeignKey(Environment)
     title = models.CharField(_("title"), max_length=255, unique=True)
     slug = AutoSlugField(populate_from="title", always_update=True, null=True, blank=True)
+    description = models.TextField(_("description"), null=True, blank=True)
     url = models.URLField()
     active = models.BooleanField(_("active"), default=False)
     image = models.ForeignKey(Photo, verbose_name=_("photo"), blank=True, null=True)

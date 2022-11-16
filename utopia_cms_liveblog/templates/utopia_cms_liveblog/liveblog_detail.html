@@ -3,5 +3,7 @@
 
 {% block content %}
   {% if object.image %}<img src="{{ object.image.get_fullscreen_url }}">{% endif %}
+  <h1>{{ object }}</h1>
+  <span>{{ object.description }}</span>
   {% liveblog_embed_code object %}
 {% endblock %}
