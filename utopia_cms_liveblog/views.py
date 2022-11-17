@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from django.views.generic import DetailView
@@ -15,7 +16,11 @@ def liveblog_list(request):
         pager = paginator.page(1)
     except (EmptyPage, InvalidPage):
         pager = paginator.page(paginator.num_pages)
-    return render(request, "utopia_cms_liveblog/liveblog_list.html", {"pager": pager})
+    return render(
+        request,
+        "utopia_cms_liveblog/liveblog_list.html",
+        {"pager": pager, "tagline": getattr(settings, "UTOPIA_CMS_LIVEBLOG_BLOGLIST_TAGLINE", None)},
+    )
 
 
 class LiveBlogDetail(DetailView):

@@ -10,9 +10,11 @@ class EnvironmentAdmin(admin.ModelAdmin):
 
 
 class LiveBlogAdmin(admin.ModelAdmin):
-    list_display = ("id", "environment", "title", "url", "access_type", "in_home", "notification")
+    list_display = ("day", "environment", "title", "status", "url", "in_home", "notification")
     list_editable = ("title", )
     raw_id_fields = ("image", )
+    list_filter = ("status", )
+    date_hierarchy = "day"
 
 
 admin.site.register(Environment, EnvironmentAdmin)
