@@ -14,7 +14,10 @@
           </a>
         {% endif %}
         <a href="{{ obj.get_absolute_url }}" title="{{ obj }}">{{ obj }}</a>
-        {% if object.description %}<span>{{ object.description }}</span>{% endif %}
+        {% if obj.description %}<span>{{ obj.description }}</span>{% endif %}
+        <div class="{{ obj.status }}">
+          {{ obj.get_status_display }}{% ifequal obj.status "ended" %} {% trans "on" %} {{ obj.day }}{% endifequal %}
+        </div>
       </li>
     {% endfor %}
   </ul>

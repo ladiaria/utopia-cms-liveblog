@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-17 04:34-0300\n"
+"POT-Creation-Date: 2022-11-17 12:52-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,23 +86,23 @@ msgstr "texto de la notificación"
 msgid "notification url"
 msgstr "url de la notificación"
 
-#: utopia_cms_liveblog/models.py:43
+#: utopia_cms_liveblog/models.py:44
 msgid "notification target publications"
 msgstr "publicaciones objetivo para la notificación"
 
-#: utopia_cms_liveblog/models.py:46
+#: utopia_cms_liveblog/models.py:48
 msgid "live blog"
 msgstr "blog en vivo"
 
-#: utopia_cms_liveblog/models.py:47
+#: utopia_cms_liveblog/models.py:49
 msgid "live blogs"
 msgstr "blogs en vivo"
 
-#: utopia_cms_liveblog/models.py:64
+#: utopia_cms_liveblog/models.py:66
 msgid "Only active blogs can be featured in home."
 msgstr "El blog debe estar activo para estar en portada."
 
-#: utopia_cms_liveblog/models.py:68
+#: utopia_cms_liveblog/models.py:70
 msgid ""
 "There is another blog in home now, more than one blog in home is not allowed."
 msgstr ""
@@ -118,10 +118,14 @@ msgstr "portada"
 msgid "LIVE"
 msgstr "EN VIVO"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:23
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:20
+msgid "on"
+msgstr "el"
+
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:27
 msgid "Previous"
 msgstr "Anterior"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:23
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:27
 msgid "Next page"
 msgstr "Siguiente"
