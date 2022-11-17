@@ -10,7 +10,8 @@
             <img src="{{ obj.image.get_thumbnail_url }}">
           </a>
         {% endif %}
-        <a href="{{ obj.get_absolute_url }}" title="{{ obj }}">{{ obj }}</a> {{ obj.description }}
+        <a href="{{ obj.get_absolute_url }}" title="{{ obj }}">{{ obj }}</a>
+        {% if object.description %}<span>{{ object.description }}</span>{% endif %}
       </li>
     {% endfor %}
   </ul>
