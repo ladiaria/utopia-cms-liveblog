@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-17 12:52-0300\n"
+"POT-Creation-Date: 2022-11-18 23:41-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,35 +74,47 @@ msgstr "acceso"
 msgid "featured in home"
 msgstr "en portada"
 
-#: utopia_cms_liveblog/models.py:40
-msgid "articles notification"
-msgstr "notificación en artículos"
-
 #: utopia_cms_liveblog/models.py:41
+msgid "notification"
+msgstr "notificación"
+
+#: utopia_cms_liveblog/models.py:44
+msgid ""
+"If checked and the blog status is active or to begin, shows an alert related "
+"to this blog in articles and publication home pages."
+msgstr "Si está marcado y el estado del blog es activo o por comenzar, muestra una alerta en las páginas de artículo y portadas de publicación."
+
+#: utopia_cms_liveblog/models.py:48
 msgid "notification text"
 msgstr "texto de la notificación"
 
-#: utopia_cms_liveblog/models.py:42
+#: utopia_cms_liveblog/models.py:49
 msgid "notification url"
 msgstr "url de la notificación"
 
-#: utopia_cms_liveblog/models.py:44
+#: utopia_cms_liveblog/models.py:51
 msgid "notification target publications"
 msgstr "publicaciones objetivo para la notificación"
 
-#: utopia_cms_liveblog/models.py:48
+#: utopia_cms_liveblog/models.py:52
+msgid ""
+"Alerts will be shown only in the pages (homes/articles) related to the "
+"publications selected."
+msgstr "Las alertas se mostrarán solamente en las páginas de portada o artículo de las publicaciones seleccionadas."
+
+#: utopia_cms_liveblog/models.py:56
 msgid "live blog"
 msgstr "blog en vivo"
 
-#: utopia_cms_liveblog/models.py:49
+#: utopia_cms_liveblog/models.py:57
 msgid "live blogs"
 msgstr "blogs en vivo"
 
-#: utopia_cms_liveblog/models.py:66
+#: utopia_cms_liveblog/models.py:74
 msgid "Only active blogs can be featured in home."
 msgstr "El blog debe estar activo para estar en portada."
 
-#: utopia_cms_liveblog/models.py:70
+#: utopia_cms_liveblog/models.py:78
 msgid ""
 "There is another blog in home now, more than one blog in home is not allowed."
 msgstr ""
@@ -118,14 +130,14 @@ msgstr "portada"
 msgid "LIVE"
 msgstr "EN VIVO"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:20
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:19
 msgid "on"
 msgstr "el"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:27
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:26
 msgid "Previous"
 msgstr "Anterior"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:27
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:26
 msgid "Next page"
 msgstr "Siguiente"

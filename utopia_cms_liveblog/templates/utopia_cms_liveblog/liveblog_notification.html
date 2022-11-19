@@ -4,6 +4,6 @@
   <div class="container">
     <span class="msg-title">{% trans "LIVE" %}</span>
       <a class="msg-link" href="{% if liveblog.notification_url %}{{ liveblog.notification_url }}{% else %}{{ liveblog.get_absolute_url }}{% endif %}">{{ liveblog.notification_text|default:liveblog.title }}</a>
-    <span class="btn-close" data-object="liveblogs/liveblog" data-id="{{ liveblog.id }}">&times;</span>
+    <span class="btn-close" data-object="liveblogs/liveblog{% if others %}_others{% endif %}" data-id="{{ liveblog.id }}">&times;</span>
   </div>
 </div>

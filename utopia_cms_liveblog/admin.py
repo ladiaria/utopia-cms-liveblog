@@ -10,8 +10,7 @@ class EnvironmentAdmin(admin.ModelAdmin):
 
 
 class LiveBlogAdmin(admin.ModelAdmin):
-    list_display = ("day", "environment", "title", "status", "url", "in_home", "notification")
-    list_editable = ("title", )
+    list_display = ("day", "environment", "title", "status", "in_home", "notification")
     raw_id_fields = ("image", )
     list_filter = ("status", )
     date_hierarchy = "day"

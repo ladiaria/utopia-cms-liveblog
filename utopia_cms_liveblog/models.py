@@ -37,11 +37,19 @@ class LiveBlog(models.Model):
     image = models.ForeignKey(Photo, verbose_name=_("photo"), blank=True, null=True)
     access_type = models.CharField(_("access"), max_length=1, choices=LIVE_EMBED_EVENT_ACCESS_TYPES, default='s')
     in_home = models.BooleanField(_("featured in home"), default=False)
-    notification = models.BooleanField(_("articles notification"), default=False)
+    notification = models.BooleanField(
+        _("notification"),
+        default=False,
+        help_text=_(
+            "If checked and the blog status is active or to begin, shows an alert related to this blog in articles "
+            "and publication home pages."
+        ),
+    )
     notification_text = models.CharField(_("notification text"), max_length=255, null=True, blank=True)
     notification_url = models.URLField(_("notification url"), null=True, blank=True)
     notification_target_pubs = models.ManyToManyField(
-        Publication, verbose_name=_("notification target publications"), blank=True
+        Publication, verbose_name=_("notification target publications"), blank=True,
+        help_text=_("Alerts will be shown only in the pages (homes/articles) related to the publications selected."),
     )
 
     class Meta:
