@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-18 23:41-0300\n"
+"POT-Creation-Date: 2022-11-21 18:55-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,7 +82,9 @@ msgstr "notificación"
 msgid ""
 "If checked and the blog status is active or to begin, shows an alert related "
 "to this blog in articles and publication home pages."
-msgstr "Si está marcado y el estado del blog es activo o por comenzar, muestra una alerta en las páginas de artículo y portadas de publicación."
+msgstr ""
+"Si está marcado y el estado del blog es activo o por comenzar, muestra una "
+"alerta en las páginas de artículo y portadas de publicación."
 
 #: utopia_cms_liveblog/models.py:48
 msgid "notification text"
@@ -100,7 +102,9 @@ msgstr "publicaciones objetivo para la notificación"
 msgid ""
 "Alerts will be shown only in the pages (homes/articles) related to the "
 "publications selected."
-msgstr "Las alertas se mostrarán solamente en las páginas de portada o artículo de las publicaciones seleccionadas."
+msgstr ""
+"Las alertas se mostrarán solamente en las páginas de portada o artículo de "
+"las publicaciones seleccionadas."
 
 #: utopia_cms_liveblog/models.py:56
 msgid "live blog"
@@ -121,23 +125,27 @@ msgstr ""
 "Ya existe otro blog en portada, solamente se admite un blog en portada a la "
 "vez."
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:5
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_detail.html:7
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:8
+msgid "Live"
+msgstr "En vivo"
+
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:7
 msgid "home"
 msgstr "portada"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:6
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_notification.html:5
-msgid "LIVE"
-msgstr "EN VIVO"
-
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:19
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:22
 msgid "on"
 msgstr "el"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:26
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:29
 msgid "Previous"
 msgstr "Anterior"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:26
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:29
 msgid "Next page"
 msgstr "Siguiente"
+
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_notification.html:5
+msgid "LIVE"
+msgstr "EN VIVO"

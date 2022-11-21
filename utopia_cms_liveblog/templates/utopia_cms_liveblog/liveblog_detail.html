@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% load liveblog_tags %}
+{% load i18n liveblog_tags %}
 
 {% block content %}
   <div class="liveblog-detail">
     <div class="liveblog-detail__head">
-      <span class="live-now">En vivo</span>
+      <span class="live-now">{% trans "Live" %}</span>
       <h1 class="title">{{ object }}</h1>
       {% if object.description %}<span class="desc">{{ object.description }}</span>{% endif %}
     </div>
