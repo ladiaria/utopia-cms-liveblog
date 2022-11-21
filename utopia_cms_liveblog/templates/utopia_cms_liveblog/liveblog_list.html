@@ -2,12 +2,15 @@
 {% load i18n %}
 
 {% block content %}
-  <a href="{% url 'home' %}">{% trans "home" %}</a>
-  <h1>{% trans "LIVE" %}</h1>
-  {% if tagline %}<span>{{ tagline|safe }}</span>{% endif %}
-  <ul>
+<div class="liveblog-list">
+  <div class="liveblog-list__head">
+    <a href="{% url 'home' %}" class="section-detail__toplink"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="15451.996 -3655.987 6.105 9.902"><path d="M773.155,7312l3.8,3.8,3.8-3.8,1.155,1.155-4.951,4.951L772,7313.155l1.155-1.155" transform="translate(22770.102 -4427.987) rotate(90)" fill="#595959"></path></svg>  {% trans "home" %}</a>
+    <h1 class="title">{% trans "Live" %}</h1>
+    {% if tagline %}<span>{{ tagline|safe }}</span>{% endif %}
+  </div>
+  <div class="liveblog-list__content">
     {% for obj in pager.object_list %}
-      <li>
+      <div class="liveblog-item">
         {% if obj.image %}
           <a href="{{ obj.get_absolute_url }}" title="{{ obj }}">
             <img src="{{ obj.image.get_thumbnail_url }}">
@@ -18,12 +21,13 @@
         <div class="{{ obj.status }}">
           {{ obj.get_status_display }}{% ifequal obj.status "ended" %} {% trans "on" %} {{ obj.day }}{% endifequal %}
         </div>
-      </li>
+      </div>
     {% endfor %}
-  </ul>
+  </div>
   {% if pager.has_other_pages %}
     <div class="align-center pagination-container">
       {% include "pagination.html" with page_param='page' previous_label=_('Previous') next_label=_('Next page') %}
     </div>
   {% endif %}
+</div>
 {% endblock %}

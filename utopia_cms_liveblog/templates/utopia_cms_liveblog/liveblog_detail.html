@@ -2,8 +2,13 @@
 {% load liveblog_tags %}
 
 {% block content %}
-  {% if object.image %}<img src="{{ object.image.get_fullscreen_url }}">{% endif %}
-  <h1>{{ object }}</h1>
-  {% if object.description %}<span>{{ object.description }}</span>{% endif %}
-  {% liveblog_embed_code object %}
+  <div class="liveblog-detail">
+    <div class="liveblog-detail__head">
+      <span class="live-now">En vivo</span>
+      <h1 class="title">{{ object }}</h1>
+      {% if object.description %}<span class="desc">{{ object.description }}</span>{% endif %}
+    </div>
+    {% liveblog_embed_code object %}
+    <div class="ld-fin ld-block"></div>
+  </div>
 {% endblock %}
