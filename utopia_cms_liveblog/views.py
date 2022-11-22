@@ -9,7 +9,8 @@ from .models import LiveBlog
 
 
 def liveblog_list(request):
-    paginator, page = Paginator(LiveBlog.objects.all(), 10), request.GET.get('page')
+    paginator = Paginator(LiveBlog.objects.all(), getattr(settings, "UTOPIA_CMS_LIVEBLOG_BLOGLIST_PAGINATED_BY", 10))
+    page = request.GET.get('page')
     try:
         pager = paginator.page(page)
     except PageNotAnInteger:
