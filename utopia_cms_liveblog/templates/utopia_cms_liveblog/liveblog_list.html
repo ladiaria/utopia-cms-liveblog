@@ -27,8 +27,8 @@
             <span class="{{ obj.status }}">
               <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.74967 0.916663L2.74967 5.91666L0.458008 3.625L1.04551 3.0375L2.74967 4.7375L7.16217 0.329163L7.74967 0.916663Z" fill="#A4A4A4"/>
-                </svg>
-                {{ obj.get_status_display }}{% ifequal obj.status "ended" %} {% trans "on" %} {{ obj.day }}{% endifequal %}
+              </svg>
+              {{ obj.get_status_display }}{% ifequal obj.status "ended" %} {% trans "on" %} {{ obj.day }}{% endifequal %}
             </span>
           </div>
         </div>
