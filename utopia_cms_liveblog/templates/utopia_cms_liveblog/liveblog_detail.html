@@ -1,10 +1,56 @@
 {% extends "base.html" %}
-{% load i18n liveblog_tags %}
+{% load i18n static liveblog_tags %}
+
+<!-- Schema (https://schema.org) -->
+{% block json_ld %}
+<script type='application/ld+json'>
+  {
+    "@context": "http://schema.org",
+    "@type": "LiveBlogPosting",
+    "publisher": {
+        "@type": "NewsMediaOrganization",
+        "name": "{{ site.name }}",
+        "url": "{{ SITE_URL }}",
+        "@id": "",
+        "logo": {
+        "@type": "ImageObject",
+        "url":"{{ URL_SCHEME }}://{{ site.domain }}{% static default_pub.open_graph_image %}"
+        }
+      }
+    },
+    "url": "Anibal: url del blog en vivo",
+    "description": "Anibal",
+    "headline": "Anibal",
+      "author":{
+        "@type":"Organization",
+        "name":"{{ site.name }}",
+        "url": "{{ SITE_URL }}"
+      },
+        "about": {
+        "@type": "Event",
+        "name": "Anibal",
+        "startDate": "Anibal: [ejemplo de formato: Wed Nov 23 2022 09:25:00 GMT-0300 (Argentina Standard Time)]",
+    "endDate": "",
+    "image": {
+      "@type": "ImageObject",
+      "url":"Anibal",
+      "width":Anibal,
+      "height":Anibal
+    },
+    "dateModified": "Anibal no se si tenemos esto",
+    "coverageStartTime": "Anibal: ejemplo de formato Wed Nov 23 2022 09:25:00 GMT-0300 (Argentina Standard Time)",
+    "coverageEndTime": "Anibal: ejemplo de formato 2022-11-23T14:54:45.998Z",
+    "name": "{{ site.name }}",
+  }
+</script>
+{% endblock %}
 
 {% block content %}
   <div class="liveblog-detail">
     <div class="liveblog-detail__head">
+      {% ifequal object.status 'active' %}
       <span class="live-now">{% trans "Live" %}</span>
+      {% endifequal %}
       <h1 class="title">{{ object }}</h1>
       {% if object.description %}<span class="desc">{{ object.description }}</span>{% endif %}
     </div>
