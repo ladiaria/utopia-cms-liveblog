@@ -1,5 +1,5 @@
-function load_liveblog_notification(publication_slug){
-  $("#liveblog-notifications").load("/liveblogs/notification/" + publication_slug + "/", function(response){
+function load_liveblog_notification(base_path, publication_slug){
+  $("#liveblog-notifications").load("/" + base_path + "/notification/" + publication_slug + "/", function(response){
     if(response){
       $(".btn-close", this).click(function(){
         notification_close(this);
