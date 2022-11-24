@@ -4,6 +4,8 @@ function load_liveblog_notification(base_path, publication_slug){
       $(".btn-close", this).click(function(){
         notification_close(this);
       });
+    }else{
+      $(window).trigger("liveblog_notification_empty");
     }
   });
 }
