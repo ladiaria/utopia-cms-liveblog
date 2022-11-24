@@ -23,9 +23,9 @@ class Environment(models.Model):
 
 class LiveBlog(models.Model):
     environment = models.ForeignKey(Environment)
-    title = models.CharField(_("title"), max_length=255, unique=True)
+    title = models.CharField(_("title"), max_length=128, unique=True)
     slug = AutoSlugField(populate_from="title", always_update=True, null=True, blank=True)
-    description = models.TextField(_("description"), null=True, blank=True)
+    description = models.CharField(_("description"), max_length=140, null=True, blank=True)
     url = models.URLField()
     day = models.DateField(_("date"), default=timezone.now)
     status = models.CharField(
