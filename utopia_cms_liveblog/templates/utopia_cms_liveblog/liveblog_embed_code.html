@@ -12,7 +12,7 @@
 {% spaceless %}
   <iframe id="liveblog-iframe" src="{{ object.url }}" frameborder="0" allowfullscreen
     {% if disable_iframe_resizer %}
-      width="100%" height="550"
+      width="100%" height="400"
     {% else %}
       onload="iFrameResize({ log: false }, '#liveblog-iframe');"
     {% endif %}
