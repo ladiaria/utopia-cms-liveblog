@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block page_title %}la diaria En vivo: las coberturas en tiempo real realizadas por la diaria{% endblock %}
-{% block page_description %}Seguí el desarrollo de las noticias, temas y acontecimientos en tiempo real con la mirada periodística de la diaria. Encontrá información actualizada de lo que está pasando.{% endblock %}
+{% block page_title %}{% spaceless %}
+  {{ site.name}} {% trans "Live" %}: {% trans "coverage in real time made by" %} {{ site.name}}
+{% endspaceless %}{% endblock %}
+
+{% block page_description %}{% spaceless %}
+  {% trans "Follow the development of the news, issues and events in real time with the journalistic view of" %} {{ site.name }}. {% trans "Find up-to-date information on what is happening" %}.
+{% endspaceless %}{% endblock %}
 
 {% block content %}
   <div class="liveblog-list">
@@ -28,21 +33,19 @@
             <h2 class="title"><a href="{{ obj.get_absolute_url }}" title="{{ obj }}">{{ obj }}</a></h2>
             {% if obj.description %}<span class="desc">{{ obj.description }}</span>{% endif %}
             <span class="{{ obj.status }}">
-              {% ifequal obj.status "ended" %}
-              <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.74967 0.916663L2.74967 5.91666L0.458008 3.625L1.04551 3.0375L2.74967 4.7375L7.16217 0.329163L7.74967 0.916663Z" fill="#A4A4A4"/>
-              </svg>
-              {% endifequal %}
-              {% ifequal obj.status "to_begin" %}
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="5" cy="5" r="2.5" stroke="#B00000"/>
-              </svg>
-              {% endifequal %}
-              {% ifequal obj.status "idle" %}
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.83333 7.91668H7.5V2.08334H5.83333M2.5 7.91668H4.16667V2.08334H2.5V7.91668Z" fill="#A4A4A4"/>
-              </svg>
-              {% endifequal %}
+              {% if obj.status == "ended" %}
+                <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.74967 0.916663L2.74967 5.91666L0.458008 3.625L1.04551 3.0375L2.74967 4.7375L7.16217 0.329163L7.74967 0.916663Z" fill="#A4A4A4"/>
+                </svg>
+              {% elif obj.status == "to_begin" %}
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="5" cy="5" r="2.5" stroke="#B00000"/>
+                </svg>
+              {% elif obj.status == "idle" %}
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.83333 7.91668H7.5V2.08334H5.83333M2.5 7.91668H4.16667V2.08334H2.5V7.91668Z" fill="#A4A4A4"/>
+                </svg>
+              {% endif %}
               {{ obj.get_status_display }}{% ifequal obj.status "ended" %} {% trans "on" %} {{ obj.day }}{% endifequal %}
             </span>
           </div>

@@ -28,6 +28,7 @@ class LiveBlog(models.Model):
     description = models.CharField(_("description"), max_length=140, null=True, blank=True)
     url = models.URLField()
     day = models.DateField(_("date"), default=timezone.now)
+    location = models.CharField(_("location"), max_length=128)
     status = models.CharField(
         _("status"),
         max_length=8,

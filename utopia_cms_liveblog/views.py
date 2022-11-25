@@ -1,3 +1,7 @@
+from pathlib import PurePosixPath
+from urllib.parse import urlparse
+import requests
+
 from django.conf import settings
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
@@ -28,6 +32,18 @@ def liveblog_list(request):
 class LiveBlogDetail(DetailView):
     model = LiveBlog
     query_pk_and_slug = True
+
+    def get_context_data(self, **kwargs):
+        context, obj = super().get_context_data(**kwargs), self.get_object()
+        blog_meta = requests.get(
+            "%s/api/client_blogs/%s/" % (obj.environment.url, PurePosixPath(urlparse(obj.url).path).parts[-1])
+        ).json()
+        # get only needed meta entries
+        context["blog_meta"] = {
+            "start_date": blog_meta["start_date"],
+            "dateModified": blog_meta["last_created_post"]["_updated"],
+        }
+        return context
 
 
 @never_cache

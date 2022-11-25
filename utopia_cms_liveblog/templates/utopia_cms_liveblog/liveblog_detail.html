@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% load i18n static liveblog_tags %}
 
-{% block page_title %}En vivo: {{ object }}  | la diaria{% endblock %}
-{% block page_description %}{% if object.description %}{{ object.description }}.{% endif %} Seguí la cobertura en vivo de la diaria.{% endblock %}
+{% block page_title %}{% trans "Live" %}: {{ object }} | {{ site.name}}{% endblock %}
+
+{% block page_description %}{% spaceless %}
+  {% if object.description %}{{ object.description }}. {% endif %}{% trans "Follow the live coverage of" %} {{ site.name }}.
+{% endspaceless %}{% endblock %}
 
 {% block json_ld %}
   <script type='application/ld+json'>
@@ -29,24 +32,24 @@
       },
       "about": {
         "@type": "Event",
-        "name": "{{ object }}"{% if object.image %},{% endif %}
-        {% comment "start and end times not supported yet" %}
-          "startDate": "Wed Nov 23 2022 09:25:00 GMT-0300 (Argentina Standard Time)",
-          "endDate": "",
-        {% endcomment %}
+        "name": "{{ object }}",
+        "startDate": "{{ blog_meta.start_date }}",
+        {% ifequal object.status "ended" %}"endDate": "{{ blog_meta.dateModified }}",{% endifequal %}
+        "location": {
+          "@type": "Place",
+          "name": "{{ object.location }}"
+        },
         {% if object.image %}
           "image": {
             "@type": "ImageObject",
             "url": "{{ URL_SCHEME }}://{{ site.domain }}{{ object.image.get_1200w_url }}",
             "width": 1200
             {# "height": "TODO: can we obtain image height?" #}
-          }
+          },
         {% endif %}
-        {% comment "other values not supported yet" %}
-          "dateModified": "",
-          "coverageStartTime": "Wed Nov 23 2022 09:25:00 GMT-0300 (Argentina Standard Time)",
-          "coverageEndTime": "2022-11-23T14:54:45.998Z"
-        {% endcomment %}
+        "dateModified": "{{ blog_meta.dateModified }}",
+        "coverageStartTime": "{{ blog_meta.start_date }}",
+        {% ifequal object.status "ended" %}"coverageEndTime": "{{ blog_meta.dateModified }}"{% endifequal %}
       }
     }
   </script>
@@ -58,12 +61,19 @@
       {% if object.status == 'active' %}
         <span class="live-now">{% trans "Live" %}</span>
       {% elif object.status == 'to_begin' %}
-        <span class="to-begin"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="6" cy="6" r="5" stroke="#B00000" stroke-width="2"/>
-          </svg> {% trans "To begin" %}</span>
+        <span class="to-begin">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="6" cy="6" r="5" stroke="#B00000" stroke-width="2"/>
+          </svg>
+          {{ object.get_status_display|capfirst }}
+        </span>
       {% elif object.status == 'ended' %}
-        <span class="ended"><svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 1.128L4.4 10.728L0 6.328L1.128 5.2L4.4 8.464L12.872 0L14 1.128Z" fill="#A4A4A4"/></svg> {% trans "Ended" %}</span>
+        <span class="ended">
+          <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 1.128L4.4 10.728L0 6.328L1.128 5.2L4.4 8.464L12.872 0L14 1.128Z" fill="#A4A4A4"/>
+          </svg>
+          {{ object.get_status_display|capfirst }}
+        </span>
       {% endif %}
       <h1 class="title">{{ object }}</h1>
       {% if object.description %}<h2 class="desc">{{ object.description }}</h2>{% endif %}

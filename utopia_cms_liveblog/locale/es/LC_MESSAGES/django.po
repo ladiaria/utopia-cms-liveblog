@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-21 18:55-0300\n"
+"POT-Creation-Date: 2022-11-25 17:47-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,43 +42,47 @@ msgstr "descripción"
 msgid "date"
 msgstr "fecha"
 
-#: utopia_cms_liveblog/models.py:32
+#: utopia_cms_liveblog/models.py:31
+msgid "location"
+msgstr "lugar"
+
+#: utopia_cms_liveblog/models.py:33
 msgid "status"
 msgstr "estado"
 
-#: utopia_cms_liveblog/models.py:34
+#: utopia_cms_liveblog/models.py:35
 msgid "idle"
 msgstr "inactivo"
 
-#: utopia_cms_liveblog/models.py:34
+#: utopia_cms_liveblog/models.py:35
 msgid "to begin"
 msgstr "por comenzar"
 
-#: utopia_cms_liveblog/models.py:34
+#: utopia_cms_liveblog/models.py:35
 msgid "active"
 msgstr "activo"
 
-#: utopia_cms_liveblog/models.py:34
+#: utopia_cms_liveblog/models.py:35
 msgid "ended"
 msgstr "finalizado"
 
-#: utopia_cms_liveblog/models.py:37
+#: utopia_cms_liveblog/models.py:38
 msgid "photo"
 msgstr "foto"
 
-#: utopia_cms_liveblog/models.py:38
+#: utopia_cms_liveblog/models.py:39
 msgid "access"
 msgstr "acceso"
 
-#: utopia_cms_liveblog/models.py:39
+#: utopia_cms_liveblog/models.py:40
 msgid "featured in home"
 msgstr "en portada"
 
-#: utopia_cms_liveblog/models.py:41
+#: utopia_cms_liveblog/models.py:42
 msgid "notification"
 msgstr "notificación"
 
-#: utopia_cms_liveblog/models.py:44
+#: utopia_cms_liveblog/models.py:45
 msgid ""
 "If checked and the blog status is active or to begin, shows an alert related "
 "to this blog in articles and publication home pages."
@@ -86,19 +90,19 @@ msgstr ""
 "Si está marcado y el estado del blog es activo o por comenzar, muestra una "
 "alerta en las páginas de artículo y portadas de publicación."
 
-#: utopia_cms_liveblog/models.py:48
+#: utopia_cms_liveblog/models.py:49
 msgid "notification text"
 msgstr "texto de la notificación"
 
-#: utopia_cms_liveblog/models.py:49
+#: utopia_cms_liveblog/models.py:50
 msgid "notification url"
 msgstr "url de la notificación"
 
-#: utopia_cms_liveblog/models.py:51
+#: utopia_cms_liveblog/models.py:52
 msgid "notification target publications"
 msgstr "publicaciones objetivo para la notificación"
 
-#: utopia_cms_liveblog/models.py:52
+#: utopia_cms_liveblog/models.py:53
 msgid ""
 "Alerts will be shown only in the pages (homes/articles) related to the "
 "publications selected."
@@ -106,46 +110,68 @@ msgstr ""
 "Las alertas se mostrarán solamente en las páginas de portada o artículo de "
 "las publicaciones seleccionadas."
 
-#: utopia_cms_liveblog/models.py:56
+#: utopia_cms_liveblog/models.py:57
 msgid "live blog"
 msgstr "blog en vivo"
 
-#: utopia_cms_liveblog/models.py:57
+#: utopia_cms_liveblog/models.py:58
 msgid "live blogs"
 msgstr "blogs en vivo"
 
-#: utopia_cms_liveblog/models.py:74
+#: utopia_cms_liveblog/models.py:75
 msgid "Only active blogs can be featured in home."
 msgstr "El blog debe estar activo para estar en portada."
 
-#: utopia_cms_liveblog/models.py:78
+#: utopia_cms_liveblog/models.py:79
 msgid ""
 "There is another blog in home now, more than one blog in home is not allowed."
 msgstr ""
 "Ya existe otro blog en portada, solamente se admite un blog en portada a la "
 "vez."
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_detail.html:7
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:8
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_detail.html:4
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_detail.html:58
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:5
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:21
 msgid "Live"
 msgstr "En vivo"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:7
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_detail.html:7
+msgid "Follow the live coverage of"
+msgstr "Seguí la cobertura en vivo de"
+
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:5
+msgid "coverage in real time made by"
+msgstr "las coberturas en tiempo real realizadas por"
+
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:9
+msgid ""
+"Follow the development of the news, issues and events in real time with the "
+"journalistic view of"
+msgstr ""
+"Seguí el desarrollo de las noticias, temas y acontecimientos en tiempo real "
+"con la mirada periodística de"
+
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:9
+msgid "Find up-to-date information on what is happening"
+msgstr "Encontrá información actualizada de lo que está pasando"
+
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:19
 msgid "home"
 msgstr "portada"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:22
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:49
 msgid "on"
 msgstr "el"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:29
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:57
 msgid "Previous"
 msgstr "Anterior"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:29
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:57
 msgid "Next page"
 msgstr "Siguiente"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_notification.html:5
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_notification.html:6
 msgid "LIVE"
 msgstr "EN VIVO"
