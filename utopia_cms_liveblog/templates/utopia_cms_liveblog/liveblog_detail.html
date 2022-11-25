@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load i18n static liveblog_tags %}
 
+{% block page_title %}En vivo: {{ object }}  | la diaria{% endblock %}
+{% block page_description %}{% if object.description %}{{ object.description }}.{% endif %} Seguí la cobertura en vivo de la diaria.{% endblock %}
+
 {% block json_ld %}
   <script type='application/ld+json'>
     {
@@ -63,7 +66,7 @@
           <path d="M14 1.128L4.4 10.728L0 6.328L1.128 5.2L4.4 8.464L12.872 0L14 1.128Z" fill="#A4A4A4"/></svg> {% trans "Ended" %}</span>
       {% endif %}
       <h1 class="title">{{ object }}</h1>
-      {% if object.description %}<span class="desc">{{ object.description }}</span>{% endif %}
+      {% if object.description %}<h2 class="desc">{{ object.description }}</h2>{% endif %}
     </div>
     {% liveblog_embed_code object %}
     <div class="ld-fin ld-block"></div>
