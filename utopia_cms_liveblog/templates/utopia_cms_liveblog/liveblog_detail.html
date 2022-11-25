@@ -48,8 +48,8 @@
           },
         {% endif %}
         "dateModified": "{{ blog_meta.dateModified }}",
-        "coverageStartTime": "{{ blog_meta.start_date }}",
-        {% ifequal object.status "ended" %}"coverageEndTime": "{{ blog_meta.dateModified }}"{% endifequal %}
+        "coverageStartTime": "{{ blog_meta.start_date }}"{% ifequal object.status "ended" %},
+        "coverageEndTime": "{{ blog_meta.dateModified }}"{% endifequal %}
       }
     }
   </script>
