@@ -52,9 +52,16 @@
 {% block content %}
   <div class="liveblog-detail">
     <div class="liveblog-detail__head">
-      {% ifequal object.status 'active' %}
+      {% if object.status == 'active' %}
         <span class="live-now">{% trans "Live" %}</span>
-      {% endifequal %}
+      {% elif object.status == 'to_begin' %}
+        <span class="to-begin"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="6" cy="6" r="5" stroke="#B00000" stroke-width="2"/>
+          </svg> {% trans "To begin" %}</span>
+      {% elif object.status == 'ended' %}
+        <span class="ended"><svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 1.128L4.4 10.728L0 6.328L1.128 5.2L4.4 8.464L12.872 0L14 1.128Z" fill="#A4A4A4"/></svg> {% trans "Ended" %}</span>
+      {% endif %}
       <h1 class="title">{{ object }}</h1>
       {% if object.description %}<span class="desc">{{ object.description }}</span>{% endif %}
     </div>
