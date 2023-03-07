@@ -1,5 +1,5 @@
 # utopia-cms-liveblog
-SourceFabric Live Blog integration for utopia-cms
+SourceFabric Live Blog integration for utopia-cms.
 
 # Features
 
