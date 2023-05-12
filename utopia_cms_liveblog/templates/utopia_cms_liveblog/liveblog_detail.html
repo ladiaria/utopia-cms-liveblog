@@ -34,7 +34,7 @@
         "@type": "Event",
         "name": "{{ object }}",
         "startDate": "{{ blog_meta.start_date }}",
-        {% ifequal object.status "ended" %}"endDate": "{{ blog_meta.dateModified }}",{% endifequal %}
+        {% if object.status == "ended" %}"endDate": "{{ blog_meta.dateModified }}",{% endif %}
         "location": {
           "@type": "Place",
           "name": "{{ object.location }}"
@@ -48,8 +48,8 @@
           },
         {% endif %}
         "dateModified": "{{ blog_meta.dateModified }}",
-        "coverageStartTime": "{{ blog_meta.start_date }}"{% ifequal object.status "ended" %},
-        "coverageEndTime": "{{ blog_meta.dateModified }}"{% endifequal %}
+        "coverageStartTime": "{{ blog_meta.start_date }}"{% if object.status == "ended" %},
+        "coverageEndTime": "{{ blog_meta.dateModified }}"{% endif %}
       }
     }
   </script>

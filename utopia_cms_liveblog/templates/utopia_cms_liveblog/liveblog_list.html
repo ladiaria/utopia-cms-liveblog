@@ -46,7 +46,7 @@
                   <path d="M5.83333 7.91668H7.5V2.08334H5.83333M2.5 7.91668H4.16667V2.08334H2.5V7.91668Z" fill="#A4A4A4"/>
                 </svg>
               {% endif %}
-              {{ obj.get_status_display }}{% ifequal obj.status "ended" %} {% trans "on" %} {{ obj.day }}{% endifequal %}
+              {{ obj.get_status_display }}{% if obj.status == "ended" %} {% trans "on" %} {{ obj.day }}{% endif %}
             </span>
           </div>
         </div>
