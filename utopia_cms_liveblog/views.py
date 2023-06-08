@@ -40,8 +40,8 @@ class LiveBlogDetail(DetailView):
         ).json()
         # get only needed meta entries
         context["blog_meta"] = {
-            "start_date": blog_meta["start_date"],
-            "dateModified": blog_meta["last_created_post"]["_updated"],
+            "start_date": blog_meta.get("start_date"),
+            "dateModified": blog_meta.get("last_created_post", {}).get("_updated"),
         }
         return context
 
