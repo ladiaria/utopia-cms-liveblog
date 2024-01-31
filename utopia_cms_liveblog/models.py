@@ -1,5 +1,5 @@
 from autoslug.fields import AutoSlugField
-from photologue.models import Gallery, Photo
+from photologue.models import Photo
 
 from django.db import models
 from django.urls import reverse

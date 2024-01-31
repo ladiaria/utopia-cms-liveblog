@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from django.views.generic import DetailView
 from django.views.decorators.cache import never_cache
 from django.shortcuts import render
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 
 from .apps import UtopiaCmsLiveblogConfig as liveblog_settings
 from .models import LiveBlog
@@ -35,14 +37,22 @@ class LiveBlogDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context, obj = super().get_context_data(**kwargs), self.get_object()
-        blog_meta = requests.get(
-            "%s/api/client_blogs/%s/" % (obj.environment.url, PurePosixPath(urlparse(obj.url).path).parts[-1])
-        ).json()
-        # get only needed meta entries
-        context["blog_meta"] = {
-            "start_date": blog_meta.get("start_date"),
-            "dateModified": blog_meta.get("last_created_post", {}).get("_updated"),
-        }
+        try:
+            blog_meta = requests.get(
+                "%s/api/client_blogs/%s/" % (obj.environment.url, PurePosixPath(urlparse(obj.url).path).parts[-1])
+            ).json()
+            # get only needed meta entries
+            context["blog_meta"] = {
+                "start_date": blog_meta.get("start_date"),
+                "dateModified": blog_meta.get("last_created_post", {}).get("_updated"),
+            }
+        except Exception:
+            if self.request.user.is_staff:
+                warn_msg = _(
+                    'Error trying to get the metadata from the liveblog origin environment. Check if the environment '
+                    'is online and the blog URL is correctly set to this object.'
+                )
+                messages.warning(self.request, warn_msg)
         return context
 
 
