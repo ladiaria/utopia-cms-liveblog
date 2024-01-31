@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=255, verbose_name='title')),
-                ('url', models.URLField()),
+                ('url', models.URLField(help_text="The URL of the blog in the LiveBlog environment.")),
                 ('active', models.BooleanField(default=False, verbose_name='active')),
                 ('access_type', models.CharField(choices=[('f', 'Gratuito'), ('s', 'Para suscripciones pagas')], default='s', max_length=1, verbose_name='access')),
                 ('in_home', models.BooleanField(default=False, verbose_name='featured in home')),

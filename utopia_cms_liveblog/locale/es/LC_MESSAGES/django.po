@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-31 16:11-0300\n"
+"POT-Creation-Date: 2024-01-31 16:55-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,6 +37,10 @@ msgstr "título"
 #: utopia_cms_liveblog/models.py:28
 msgid "description"
 msgstr "descripción"
+
+#: utopia_cms_liveblog/models.py:29
+msgid "The URL of the blog in the LiveBlog environment."
+msgstr "La URL del blog en el ambiente de LiveBlog."
 
 #: utopia_cms_liveblog/models.py:30
 msgid "date"
