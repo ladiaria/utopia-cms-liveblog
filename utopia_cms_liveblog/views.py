@@ -72,7 +72,9 @@ def notification(request, publication_slug):
             # then to others
             liveblog = candidates.filter(
                 in_home=False
-            ).exclude(id__in=request.session.get('liveblog_notifications_others_closed', set())).order_by("status").first()
+            ).exclude(
+                id__in=request.session.get('liveblog_notifications_others_closed', set())
+            ).order_by("status").first()
             if liveblog:
                 context["others"] = True
     if liveblog:
