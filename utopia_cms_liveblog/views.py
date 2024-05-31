@@ -59,21 +59,22 @@ class LiveBlogDetail(DetailView):
 @never_cache
 def notification(request, publication_slug):
     # filter candidates
-    candidates = LiveBlog.objects.filter(
+    liveblog, candidates = None, LiveBlog.objects.filter(
         status__in=("active", "to_begin"), notification=True, notification_target_pubs__slug=publication_slug
     )
-    # give priority to in-home blogs
-    liveblog = candidates.filter(
-        in_home=True
-    ).exclude(id__in=request.session.get('liveblog_notifications_closed', set())).first()
-    context = {"base_path": liveblog_settings.BASE_PATH}
-    if not liveblog:
-        # then to others
+    if candidates:
+        # give priority to in-home blogs
         liveblog = candidates.filter(
-            in_home=False
-        ).exclude(id__in=request.session.get('liveblog_notifications_others_closed', set())).order_by("status").first()
-        if liveblog:
-            context["others"] = True
+            in_home=True
+        ).exclude(id__in=request.session.get('liveblog_notifications_closed', set())).first()
+        context = {"base_path": liveblog_settings.BASE_PATH}
+        if not liveblog:
+            # then to others
+            liveblog = candidates.filter(
+                in_home=False
+            ).exclude(id__in=request.session.get('liveblog_notifications_others_closed', set())).order_by("status").first()
+            if liveblog:
+                context["others"] = True
     if liveblog:
         context["liveblog"] = liveblog
         return render(request, 'utopia_cms_liveblog/liveblog_notification.html', context)
