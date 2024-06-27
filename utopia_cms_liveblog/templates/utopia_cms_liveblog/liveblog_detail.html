@@ -12,6 +12,12 @@
     {
       "@context": "http://schema.org",
       "@type": "LiveBlogPosting",
+      "headline": "{{ object }}",
+      {% if object.description %}"description": "{{ object.description }}",{% endif %}
+      "url": "{{ URL_SCHEME }}://{{ site.domain }}{{ object.get_absolute_url }}",
+      "dateModified": "{{ blog_meta.dateModified }}",
+      "coverageStartTime": "{{ blog_meta.start_date }}",
+      {% if object.status == "ended" %}"coverageEndTime": "{{ blog_meta.dateModified }}",{% endif %}
       "publisher": {
         "@type": "NewsMediaOrganization",
         "name": "{{ site.name }}",
@@ -22,9 +28,6 @@
           "url":"{{ URL_SCHEME }}://{{ site.domain }}{% static default_pub.open_graph_image %}"
         }
       },
-      "url": "{{ URL_SCHEME }}://{{ site.domain }}{{ object.get_absolute_url }}",
-      {% if object.description %}"description": "{{ object.description }}",{% endif %}
-      "headline": "{{ object }}",
       "author":{
         "@type": "Organization",
         "name": "{{ site.name }}",

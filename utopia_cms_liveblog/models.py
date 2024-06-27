@@ -24,7 +24,7 @@ class Environment(models.Model):
 class LiveBlog(models.Model):
     environment = models.ForeignKey(Environment, on_delete=models.CASCADE)
     title = models.CharField(_("title"), max_length=128, unique=True)
-    slug = AutoSlugField(populate_from="title", always_update=True, null=True, blank=True)
+    slug = AutoSlugField(populate_from="title", always_update=True, null=True, blank=True, unique=True)
     description = models.CharField(_("description"), max_length=140, null=True, blank=True)
     url = models.URLField(help_text=_("The URL of the blog in the LiveBlog environment."))
     day = models.DateField(_("date"), default=timezone.now)
