@@ -18,14 +18,32 @@
       "dateModified": "{{ blog_meta.dateModified }}",
       "coverageStartTime": "{{ blog_meta.start_date }}",
       {% if object.status == "ended" %}"coverageEndTime": "{{ blog_meta.dateModified }}",{% endif %}
-      "liveBlogUpdate": [
-        {
-          "@type": "BlogPosting",
-          "articleBody": "{{ blog_meta.most_recent_post_body }}",
-          "datePublished": "{{ blog_meta.last_created_post }}",
-          "dateModified": "{{ blog_meta.dateModified }}"
-        }
-      ],
+      {% if blog_meta.posts %}
+        "liveBlogUpdate": [
+          {% for item in blog_meta.posts %}
+            {
+              "@type": "BlogPosting",
+              "articleBody": "{{ item.body }}",
+              "datePublished": "{{ item.created }}",
+              "dateModified": "{{ item.updated }}"
+              "publisher": {
+                "@type": "Organization",
+                "name": "{{ site.name }}"
+              },
+              {% if item.image_src %}
+                "image": {
+                  "@type": "ImageObject",
+                  "url": "{{ item.image_src }}"
+                },
+              {% endif %}
+              "author": {
+                "@type": "Person",
+                "name": "{{ item.author }}"
+              }
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ],
+      {% endif %}
       "publisher": {
         "@type": "NewsMediaOrganization",
         "name": "{{ site.name }}",
@@ -36,7 +54,7 @@
           "url":"{{ URL_SCHEME }}://{{ site.domain }}{% static default_pub.open_graph_image %}"
         }
       },
-      "author":{
+      "author": {
         "@type": "Organization",
         "name": "{{ site.name }}",
         "url": "{{ SITE_URL }}"

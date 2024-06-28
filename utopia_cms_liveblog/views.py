@@ -46,14 +46,24 @@ class LiveBlogDetail(DetailView):
             # get only needed meta entries
             context["blog_meta"] = {
                 "start_date": blog_meta.get("start_date"),
-                "last_created_post": blog_meta.get("last_created_post", {}).get("_updated"),
-                "dateModified": blog_meta.get("last_updated_post", {}).get("_updated"),
+                "dateModified": blog_meta.get("last_updated_post", {}).get("_updated")
             }
             # most recent post info
-            post_meta = requests.get(api_url + "posts?max_results=1").json()
-            items = post_meta["_items"]
+            post_meta = requests.get(api_url + "posts").json()
+            items = post_meta["_items"]  # TODO: all pages instead of 1st-only
             if len(items):
-                context["blog_meta"]["most_recent_post_body"] = items[0]["groups"][1]["refs"][0]["item"]["text"]
+                context["blog_meta"]["posts"] = []
+                for item in items:
+                    item_refs = item["groups"][1]["refs"]
+                    item_meta = {
+                        "body": item_refs[0]["item"]["text"],
+                        "created": item["_created"],
+                        "updated": item["_updated"],
+                        "author": item_refs[0]["item"]["original_creator"]["display_name"],
+                    }
+                    if len(item_refs) > 1:
+                        item_meta["image_src"] = item_refs[1]["item"]["meta"]["media"]["_url"]
+                    context["blog_meta"]["posts"].append(item_meta)
         except Exception:
             if self.request.user.is_staff:
                 warn_msg = _(
