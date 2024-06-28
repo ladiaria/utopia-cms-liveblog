@@ -38,14 +38,22 @@ class LiveBlogDetail(DetailView):
     def get_context_data(self, **kwargs):
         context, obj = super().get_context_data(**kwargs), self.get_object()
         try:
-            blog_meta = requests.get(
-                "%s/api/client_blogs/%s/" % (obj.environment.url, PurePosixPath(urlparse(obj.url).path).parts[-1])
-            ).json()
+            api_url = "%s/api/client_blogs/%s/" % (
+                obj.environment.url,
+                PurePosixPath(urlparse(obj.url).path).parts[-1],
+            )
+            blog_meta = requests.get(api_url).json()
             # get only needed meta entries
             context["blog_meta"] = {
                 "start_date": blog_meta.get("start_date"),
-                "dateModified": blog_meta.get("last_created_post", {}).get("_updated"),
+                "last_created_post": blog_meta.get("last_created_post", {}).get("_updated"),
+                "dateModified": blog_meta.get("last_updated_post", {}).get("_updated"),
             }
+            # most recent post info
+            post_meta = requests.get(api_url + "posts?max_results=1").json()
+            items = post_meta["_items"]
+            if len(items):
+                context["blog_meta"]["most_recent_post_body"] = items[0]["groups"][1]["refs"][0]["item"]["text"]
         except Exception:
             if self.request.user.is_staff:
                 warn_msg = _(

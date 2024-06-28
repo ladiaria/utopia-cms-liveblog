@@ -18,6 +18,14 @@
       "dateModified": "{{ blog_meta.dateModified }}",
       "coverageStartTime": "{{ blog_meta.start_date }}",
       {% if object.status == "ended" %}"coverageEndTime": "{{ blog_meta.dateModified }}",{% endif %}
+      "liveBlogUpdate": [
+        {
+          "@type": "BlogPosting",
+          "articleBody": "{{ blog_meta.most_recent_post_body }}",
+          "datePublished": "{{ blog_meta.last_created_post }}",
+          "dateModified": "{{ blog_meta.dateModified }}"
+        }
+      ],
       "publisher": {
         "@type": "NewsMediaOrganization",
         "name": "{{ site.name }}",
