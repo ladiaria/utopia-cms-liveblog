@@ -19,6 +19,6 @@ class LiveBlogAdminForm(ModelForm):
 class LiveBlogAdmin(admin.ModelAdmin):
     form = LiveBlogAdminForm
     list_display = ("day", "environment", "title", "status", "in_home", "notification")
-    raw_id_fields = ("image", )
-    list_filter = ("status", )
+    raw_id_fields = ("image",)
+    list_filter = ("status",)
     date_hierarchy = "day"
