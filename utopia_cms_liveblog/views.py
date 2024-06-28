@@ -62,9 +62,13 @@ class LiveBlogDetail(DetailView):
                         "author": item_refs[0]["item"]["original_creator"]["display_name"],
                     }
                     if len(item_refs) > 1:
-                        item_meta["image_src"] = item_refs[1]["item"]["meta"]["media"]["_url"]
+                        image_src = item_refs[1]["item"]["meta"].get("media", {}).get("_url")
+                        if image_src:
+                            item_meta["image_src"] = image_src
                     context["blog_meta"]["posts"].append(item_meta)
-        except Exception:
+        except Exception as exc:
+            if settings.DEBUG:
+                print(exc)
             if self.request.user.is_staff:
                 warn_msg = _(
                     'Error trying to get the metadata from the liveblog origin environment. Check if the environment '
