@@ -4,14 +4,18 @@ from utopia_cms_liveblog.views import (
 )
 
 
-urlpatterns = [
-    path('', liveblog_list),
-    re_path(r'^notification/(?P<publication_slug>[-\w]+)/$', notification, name='liveblog-notification'),
-    path('liveblog/<int:liveblog_id>/closed/', notification_closed, name='liveblog-notification-closed'),
-    path(
-        'liveblog_others/<int:liveblog_id>/closed/',
-        notification_others_closed,
-        name='liveblog-notification-others-closed',
-    ),
-    re_path(r'^(?P<slug>[-\w]+)/$', LiveBlogDetail.as_view(), name="liveblog-detail"),
-]
+def get_urlpatterns(detail_class=LiveBlogDetail):
+    return [
+        path('', liveblog_list),
+        re_path(r'^notification/(?P<publication_slug>[-\w]+)/$', notification, name='liveblog-notification'),
+        path('liveblog/<int:liveblog_id>/closed/', notification_closed, name='liveblog-notification-closed'),
+        path(
+            'liveblog_others/<int:liveblog_id>/closed/',
+            notification_others_closed,
+            name='liveblog-notification-others-closed',
+        ),
+        re_path(r'^(?P<slug>[-\w]+)/$', detail_class.as_view(), name="liveblog-detail"),
+    ]
+
+
+urlpatterns = get_urlpatterns()

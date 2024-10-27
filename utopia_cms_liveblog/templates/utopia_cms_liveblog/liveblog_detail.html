@@ -1,53 +1,10 @@
 {% extends "base.html" %}
 {% load i18n static liveblog_tags %}
 
-{% block page_title %}
-  {% if object.slug == "elecciones-2024-en-vivo-segui-la-cobertura-minuto" %}
-    Elecciones 2024 EN VIVO: seguí la cobertura minuto a minuto
-  {% else %}
-    {% trans "Live" %}: {{ object }} | {{ site.name }}
-  {% endif %}
-{% endblock %}
-
-{% block meta_og_title %}
-  {% if object.slug == "elecciones-2024-en-vivo-segui-la-cobertura-minuto" %}
-    <meta property="og:title" content="{{ object.description }}">
-  {% else %}
-    {{ block.super }}
-  {% endif %}
-{% endblock %}
-
-{% block meta %}
-  {% if object.slug == "elecciones-2024-en-vivo-segui-la-cobertura-minuto" %}
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="Elecciones 2024 EN VIVO: seguí la cobertura minuto a minuto">
-    <meta property="og:locale" content="{{ local_lang }}_{{ LOCAL_COUNTRY }}">
-    <meta property="og:site_name" content="{{ site.name }}">
-    <meta property="og:url" content="{{ SITE_URL_SD }}{{ request.get_full_path }}">
-    {% if publication.slug in custom_icons_publications %}
-      <meta property="og:image" content="{{ SITE_URL_SD }}{% static publication.open_graph_image %}">
-    {% elif default_pub.open_graph_image %}
-      <meta property="og:image" content="{{ SITE_URL_SD }}{% static default_pub.open_graph_image %}">
-    {% endif %}
-    <!-- End Open Graph (http://ogp.me) -->
-
-    <!-- Meta tags Twitter -->
-    <meta name="twitter:card" content="summary">
-    {% if HOMEV3_TWITTER_SITE_META %}
-      <meta name="twitter:site" content="@{{ HOMEV3_TWITTER_SITE_META }}">
-    {% endif %}
-    <!-- End Meta tags Twitter -->
-  {% else %}
-    {{ block.super }}
-  {% endif %}
-{% endblock %}
+{% block page_title %}{% trans "Live" %}: {{ object }} | {{ site.name }}{% endblock %}
 
 {% block page_description %}{% spaceless %}
-  {% if object.slug == "elecciones-2024-en-vivo-segui-la-cobertura-minuto" %}
-    {{ object.description }}
-  {% else %}
-    {% if object.description %}{{ object.description }}. {% endif %}{% trans "Follow the live coverage of" %} {{ site.name }}.
-  {% endif %}
+  {% if object.description %}{{ object.description }}. {% endif %}{% trans "Follow the live coverage of" %} {{ site.name }}.
 {% endspaceless %}{% endblock %}
 
 {% block json_ld %}
