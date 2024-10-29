@@ -24,7 +24,7 @@
     <div class="liveblog-list__content">
       {% for obj in pager.object_list %}
         <div class="liveblog-item">
-          {% if obj.image %}
+          {% if obj.image_render_allowed %}
             <a href="{{ obj.get_absolute_url }}" title="{{ obj }}" class="liveblog-img">
               <img src="{{ obj.image.get_450w_url }}">
             </a>

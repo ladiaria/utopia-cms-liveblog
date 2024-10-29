@@ -4,10 +4,13 @@ from photologue.models import Photo
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, gettext
+from django.utils.safestring import mark_safe
+from django.utils.html import escape
 
 from core.models import Publication
 from cartelera.choices import LIVE_EMBED_EVENT_ACCESS_TYPES
+from photologue_ladiaria.models import PhotoExtended
 
 
 class Environment(models.Model):
@@ -21,19 +24,47 @@ class Environment(models.Model):
         return self.name
 
 
+def build_helptext(begin, true_to_title_false_to_desc=True):
+    end = (
+        gettext("the main title is applied.")
+        if true_to_title_false_to_desc else gettext("the main description is applied.")
+    )
+    return mark_safe(begin) + escape("<head>") + gettext(' of the article page.<br>If left blank, ') + end
+
+
 class LiveBlog(models.Model):
     environment = models.ForeignKey(Environment, on_delete=models.CASCADE)
     title = models.CharField(
-        _("title"),
-        max_length=128,
-        unique=True,
-        help_text=_(
-            "Enter a concise and descriptive title. It is recommended not to change the title once it has been "
-            "entered, as this may affect the blog's search engine ranking due to potential delays in cache updates."
-        ),  # TODO: to make this less confused, implement the "history" redirect feautre (see utopia-cms core.Article)
+        _("title"), max_length=128, unique=True, help_text=_("Enter a concise and descriptive title.")
     )
-    slug = AutoSlugField(populate_from="title", always_update=True, null=True, blank=True, unique=True)
+    slug = AutoSlugField(populate_from="title", always_update=True, null=True, blank=True, unique=True, max_length=200)
     description = models.CharField(_("description"), max_length=140, null=True, blank=True)
+    alt_title = models.CharField(
+        _("alternative title"),
+        blank=True,
+        null=True,
+        max_length=200,
+        help_text=build_helptext(_('Applies to title tag in the '))
+    )
+    alt_title_meta = models.CharField(
+        _("alternative title for metadata"),
+        blank=True,
+        null=True,
+        max_length=200,
+        help_text=build_helptext(_('Applies to metadata: meta title, Open Graph and Schema in the '))
+    )
+    alt_desc_meta = models.TextField(
+        _("alternative description for metadata"),
+        blank=True,
+        null=True,
+        help_text=build_helptext(_('Applies to the content of the description meta tag in the '), False)
+    )
+    alt_desc_og_meta = models.TextField(
+        _("alternative description for og metadata"),
+        blank=True,
+        null=True,
+        help_text=build_helptext(_('Applies to metadata: Open Graph and Schema in the '), False)
+    )
     url = models.URLField(help_text=_("The URL of the blog in the LiveBlog environment."))
     day = models.DateField(_("date"), default=timezone.now)
     location = models.CharField(_("location"), max_length=128)
@@ -90,6 +121,36 @@ class LiveBlog(models.Model):
                     _('There is another blog in home now, more than one blog in home is not allowed.')
                 )
 
+    def has_image(self):
+        try:
+            return bool(self.image)
+        except PhotoExtended.DoesNotExist:
+            return False
+
+    def image_image_file_exists(self):
+        try:
+            result = self.has_image() and bool(self.image.image.file)
+        except IOError:
+            result = False
+        return result
+
+    def image_render_allowed(self):
+        return self.image_image_file_exists() and self.image.is_public
+
     def save(self, *args, **kwargs):
         self.full_clean()  # calls self.clean() as well cleans other fields
-        return super(LiveBlog, self).save(*args, **kwargs)
+        save_result = super().save(*args, **kwargs)
+        self.refresh_from_db()
+        new_url = self.get_absolute_url()
+        # add to history the potential new url
+        if not LiveBlogUrlHistory.objects.filter(liveblog=self, absolute_url=new_url).exists():
+            LiveBlogUrlHistory.objects.create(liveblog=self, absolute_url=new_url)
+        return save_result
+
+
+class LiveBlogUrlHistory(models.Model):
+    liveblog = models.ForeignKey(LiveBlog, on_delete=models.CASCADE)
+    absolute_url = models.URLField(max_length=500, db_index=True)
+
+    class Meta:
+        unique_together = ('liveblog', 'absolute_url')

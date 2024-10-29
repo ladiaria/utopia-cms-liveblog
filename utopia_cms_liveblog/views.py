@@ -4,7 +4,7 @@ import requests
 
 from django.conf import settings
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views.generic import DetailView
 from django.views.decorators.cache import never_cache
 from django.shortcuts import render
@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
 from .apps import UtopiaCmsLiveblogConfig as liveblog_settings
-from .models import LiveBlog
+from .models import LiveBlog, LiveBlogUrlHistory
 
 
 def liveblog_list(request):
@@ -34,6 +34,14 @@ def liveblog_list(request):
 class LiveBlogDetail(DetailView):
     model = LiveBlog
     query_pk_and_slug = True
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            return super().dispatch(request, *args, **kwargs)
+        except Http404:
+            return HttpResponseRedirect(
+                LiveBlogUrlHistory.objects.get(absolute_url=self.request.path).liveblog.get_absolute_url()
+            )
 
     def get_context_data(self, **kwargs):
         context, obj = super().get_context_data(**kwargs), self.get_object()

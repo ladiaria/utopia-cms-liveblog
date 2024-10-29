@@ -1,11 +1,44 @@
-{% extends "base.html" %}
+{% extends base_template %}
 {% load i18n static liveblog_tags %}
 
-{% block page_title %}{% trans "Live" %}: {{ object }} | {{ site.name }}{% endblock %}
+{% block page_title %}
+  {% if object.alt_title %}
+    {{ object.alt_title }}
+  {% else %}
+    {% trans "Live" %}: {{ object }} | {{ site.name }}
+  {% endif %}
+{% endblock %}
 
-{% block page_description %}{% spaceless %}
-  {% if object.description %}{{ object.description }}. {% endif %}{% trans "Follow the live coverage of" %} {{ site.name }}.
-{% endspaceless %}{% endblock %}
+{% block page_description %}
+  {% if object.alt_desc_meta %}
+    {{ object.alt_desc_meta }}
+  {% else %}
+    {% if object.description %}
+      {{ object.description }}.
+    {% endif %}
+    {% trans "Follow the live coverage of" %} {{ site.name }}.
+  {% endif %}
+{% endblock %}
+
+{% block meta_og_title %}
+  <meta property="og:title" content="{{ object.alt_title_meta|default:object.title }}">
+{% endblock %}
+
+{% block meta_og_description %}
+  {% if object.description %}
+    <meta property="og:description" content="{{ object.alt_desc_og_meta|default:object.description }}">
+  {% else %}
+    {{ block.super }}
+  {% endif %}
+{% endblock %}
+
+{% block meta_og_image %}
+  {% if object.image_render_allowed %}
+    <meta property="og:image" content="{{ SITE_URL_SD }}{{ object.image.get_article_main_url }}">
+  {% else %}
+    {{ block.super }}
+  {% endif %}
+{% endblock %}
 
 {% block json_ld %}
   <script type='application/ld+json'>
@@ -13,8 +46,8 @@
       "@context": "http://schema.org",
       "@type": "LiveBlogPosting",
       "headline": "{{ object }}",
-      {% if object.description %}"description": "{{ object.description }}",{% endif %}
-      "url": "{{ URL_SCHEME }}://{{ site.domain }}{{ object.get_absolute_url }}",
+      {% if object.description %}"description": "{{ object.alt_desc_og_meta|default:object.description }}",{% endif %}
+      "url": "{{ SITE_URL_SD }}{{ object.get_absolute_url }}",
       "dateModified": "{{ blog_meta.dateModified }}",
       "coverageStartTime": "{{ blog_meta.start_date }}",
       {% if object.status == "ended" %}"coverageEndTime": "{{ blog_meta.dateModified }}",{% endif %}
@@ -51,7 +84,7 @@
         "@id": "",
         "logo": {
           "@type": "ImageObject",
-          "url":"{{ URL_SCHEME }}://{{ site.domain }}{% static default_pub.open_graph_image %}"
+          "url":"{{ SITE_URL_SD }}{% static default_pub.open_graph_image %}"
         }
       },
       "author": {
@@ -68,10 +101,10 @@
           "@type": "Place",
           "name": "{{ object.location }}"
         },
-        {% if object.image %}
+        {% if object.image_render_allowed %}
           "image": {
             "@type": "ImageObject",
-            "url": "{{ URL_SCHEME }}://{{ site.domain }}{{ object.image.get_1200w_url }}",
+            "url": "{{ SITE_URL_SD }}{{ object.image.get_article_main_url }}",
             "width": 1200
             {# "height": "TODO: can we obtain image height?" #}
           },
