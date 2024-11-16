@@ -7,7 +7,7 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnIn
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views.generic import DetailView
 from django.views.decorators.cache import never_cache
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
@@ -39,9 +39,8 @@ class LiveBlogDetail(DetailView):
         try:
             return super().dispatch(request, *args, **kwargs)
         except Http404:
-            return HttpResponseRedirect(
-                LiveBlogUrlHistory.objects.get(absolute_url=self.request.path).liveblog.get_absolute_url()
-            )
+            liveblog_history = get_object_or_404(LiveBlogUrlHistory, absolute_url=self.request.path)
+            return HttpResponseRedirect(liveblog_history.liveblog.get_absolute_url())
 
     def get_context_data(self, **kwargs):
         context, obj = super().get_context_data(**kwargs), self.get_object()
