@@ -40,6 +40,16 @@
   {% endif %}
 {% endblock %}
 
+{% block body_class %}live-blog{% endblock %}
+
+{% block extra_css %}
+  <style>
+    body.live-blog main#main-content {
+      overflow-x: hidden;
+    }
+  </style>
+{% endblock %}
+
 {% block json_ld %}
   <script type='application/ld+json'>
     {
