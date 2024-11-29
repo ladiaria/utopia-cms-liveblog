@@ -1,0 +1,39 @@
+{% load static %}
+
+{% if load_liveblog_notification_js %}{# script is loaded only if exists blogs with notification enabled #}
+  <script defer src="{% static 'js/liveblog_notification.js' %}"></script>
+{% endif %}
+<script type="text/javascript">
+  {% if not load_liveblog_notification_js %}
+    {# event is triggered without calling the "real" function because there are no "notifiers" liveblogs #}
+    function load_liveblog_notification(base_path, publication_slug){
+      $(window).trigger("liveblog_notification_empty");
+    }
+  {% endif %}
+  function load_liveblog_notification_wrapper(){
+    load_liveblog_notification("{{ liveblog_base_path }}", "{{ publication.slug }}");
+  }
+  $(window).on("liveblog_notification_empty", function(){
+    $("#subscribe-notice-wrapper").removeClass("hide");
+  });
+  $(function(){
+    {% if bn_module_published_count %}
+      $('#bn-module').load("{% url 'bn-content' %}?publication={{ publication.slug }}", function(response){
+        if(response){
+          var btn_close = $('.btn-close', this);
+          if(btn_close.length){
+            btn_close.on('click', function(){
+              notification_close(this);
+            });
+          }else{
+            load_liveblog_notification_wrapper();
+          }
+        }else{
+          load_liveblog_notification_wrapper();
+        }
+      });
+    {% else %}
+      load_liveblog_notification_wrapper();
+    {% endif %}
+  });
+</script>

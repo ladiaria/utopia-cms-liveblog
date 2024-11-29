@@ -10,4 +10,6 @@ def liveblog(request):
         result["liveblog"] = LiveBlog.objects.get(in_home=True)
     except (LiveBlog.DoesNotExist, LiveBlog.MultipleObjectsReturned):
         pass
+    if LiveBlog.objects.filter(status__in=["active", "to_begin"], notification=True).exists():
+        result["load_liveblog_notification_js"] = True
     return result
