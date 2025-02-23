@@ -31,6 +31,7 @@ class LiveBlogAdminForm(ModelForm):
 class LiveBlogAdmin(admin.ModelAdmin):
     form = LiveBlogAdminForm
     list_display = ("day", "environment", "title", "status", "in_home", "notification")
+    list_editable = list_display[1:]
     raw_id_fields = ("image",)
     list_filter = ("status",)
     date_hierarchy = "day"
@@ -43,9 +44,13 @@ class LiveBlogAdmin(admin.ModelAdmin):
                     "title",
                     "description",
                     "url",
-                    ("day", "location"),
-                    ("status", "image"),
-                    ("access_type", "in_home", "notification"),
+                    "day",
+                    "location",
+                    "status",
+                    "image",
+                    "access_type",
+                    "in_home",
+                    "notification",
                     "notification_text",
                     "notification_url",
                     "notification_target_pubs",

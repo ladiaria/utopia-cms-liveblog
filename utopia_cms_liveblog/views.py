@@ -3,9 +3,8 @@ from urllib.parse import urlparse
 import requests
 
 from django.conf import settings
-from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from django.views.decorators.cache import never_cache
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
@@ -15,20 +14,19 @@ from .apps import UtopiaCmsLiveblogConfig as liveblog_settings
 from .models import LiveBlog, LiveBlogUrlHistory
 
 
-def liveblog_list(request):
-    paginator = Paginator(LiveBlog.objects.all(), getattr(settings, "UTOPIA_CMS_LIVEBLOG_BLOGLIST_PAGINATED_BY", 10))
-    page = request.GET.get('page')
-    try:
-        pager = paginator.page(page)
-    except PageNotAnInteger:
-        pager = paginator.page(1)
-    except (EmptyPage, InvalidPage):
-        pager = paginator.page(paginator.num_pages)
-    return render(
-        request,
-        "utopia_cms_liveblog/liveblog_list.html",
-        {"pager": pager, "tagline": getattr(settings, "UTOPIA_CMS_LIVEBLOG_BLOGLIST_TAGLINE", None)},
-    )
+class LiveBlogList(ListView):
+    model = LiveBlog
+    paginate_by = getattr(settings, "UTOPIA_CMS_LIVEBLOG_BLOGLIST_PAGINATED_BY", 10)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(
+            {
+                "tagline": getattr(settings, "UTOPIA_CMS_LIVEBLOG_BLOGLIST_TAGLINE", None),
+                "pagination_template": "pagination.html",
+            }
+        )
+        return context
 
 
 class LiveBlogDetail(DetailView):

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends base_template %}
 {% load i18n %}
 
 {% block page_title %}{% spaceless %}
@@ -22,7 +22,7 @@
       {% if tagline %}<span class="desc">{{ tagline|safe }}</span>{% endif %}
     </div>
     <div class="liveblog-list__content">
-      {% for obj in pager.object_list %}
+      {% for obj in object_list %}
         <div class="liveblog-item">
           {% if obj.image_render_allowed %}
             <a href="{{ obj.get_absolute_url }}" title="{{ obj }}" class="liveblog-img">
@@ -50,11 +50,15 @@
             </span>
           </div>
         </div>
+      {% empty %}
+        <div class="align-center">
+          <p>{% trans "No liveblogs found" %}</p>
+        </div>
       {% endfor %}
     </div>
-    {% if pager.has_other_pages %}
+    {% if page_obj.has_other_pages %}
       <div class="align-center pagination-container">
-        {% include "pagination.html" with page_param='page' previous_label=_('Previous') next_label=_('Next page') %}
+        {% include pagination_template with page_param='page' previous_label=_('Previous') next_label=_('Next page') %}
       </div>
     {% endif %}
   </div>
