@@ -19,217 +19,207 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: utopia_cms_liveblog/admin.py:61
 msgid "Metadata"
-msgstr ""
+msgstr "Metadatos"
 
 #: utopia_cms_liveblog/apps.py:7
 msgid "Live Blogs"
-msgstr ""
+msgstr "Blogs en vivo"
 
 #: utopia_cms_liveblog/models.py:17
 msgid "name"
-msgstr ""
+msgstr "nombre"
 
 #: utopia_cms_liveblog/models.py:21
 msgid "environment"
-msgstr ""
+msgstr "ambiente"
 
 #: utopia_cms_liveblog/models.py:29
 msgid "the main title is applied."
-msgstr ""
+msgstr "aplica Título principal."
 
 #: utopia_cms_liveblog/models.py:30
 msgid "the main description is applied."
-msgstr ""
+msgstr "aplica Descripción principal."
 
 #: utopia_cms_liveblog/models.py:32
 msgid " of the article page.<br>If left blank, "
-msgstr ""
+msgstr " de la página del artículo.<br>Si se deja vacío "
 
 #: utopia_cms_liveblog/models.py:38
 msgid "title"
-msgstr ""
+msgstr "título"
 
 #: utopia_cms_liveblog/models.py:38
 msgid "Enter a concise and descriptive title."
-msgstr ""
+msgstr "Ingrese un título conciso y descriptivo."
 
 #: utopia_cms_liveblog/models.py:41
 msgid "description"
-msgstr ""
+msgstr "descripción"
 
 #: utopia_cms_liveblog/models.py:43
 msgid "alternative title"
-msgstr ""
+msgstr "título alternativo"
 
 #: utopia_cms_liveblog/models.py:47
 msgid "Applies to title tag in the "
-msgstr ""
+msgstr "Aplica al tag title en el "
 
 #: utopia_cms_liveblog/models.py:50
 msgid "alternative title for metadata"
-msgstr ""
+msgstr "título alternativo para metadatos"
 
 #: utopia_cms_liveblog/models.py:54
 msgid "Applies to metadata: meta title, Open Graph and Schema in the "
-msgstr ""
+msgstr "Aplica a metadatos: meta title, Open Graph y Schema en el "
 
 #: utopia_cms_liveblog/models.py:57
 msgid "alternative description for metadata"
-msgstr ""
+msgstr "descripción alternativo para metadatos"
 
 #: utopia_cms_liveblog/models.py:60
 msgid "Applies to the content of the description meta tag in the "
-msgstr ""
+msgstr "Aplica al content del tag meta description en el "
 
 #: utopia_cms_liveblog/models.py:63
 msgid "alternative description for og metadata"
-msgstr ""
+msgstr "descripción alternativa para og metadata"
 
 #: utopia_cms_liveblog/models.py:66
 msgid "Applies to metadata: Open Graph and Schema in the "
-msgstr ""
+msgstr "Aplica a metadatos: Open Graph y Schema en el "
 
 #: utopia_cms_liveblog/models.py:68
 msgid "The URL of the blog in the LiveBlog environment."
-msgstr ""
+msgstr "La URL del blog en el ambiente de LiveBlog."
 
 #: utopia_cms_liveblog/models.py:69
 msgid "date"
-msgstr ""
+msgstr "fecha"
 
 #: utopia_cms_liveblog/models.py:70
 msgid "location"
-msgstr ""
+msgstr "lugar"
 
 #: utopia_cms_liveblog/models.py:72
 msgid "status"
-msgstr ""
+msgstr "estado"
 
 #: utopia_cms_liveblog/models.py:74
 msgid "idle"
-msgstr ""
+msgstr "inactivo"
 
 #: utopia_cms_liveblog/models.py:74
 msgid "to begin"
-msgstr ""
+msgstr "por comenzar"
 
 #: utopia_cms_liveblog/models.py:74
 msgid "active"
-msgstr ""
+msgstr "activo"
 
 #: utopia_cms_liveblog/models.py:74
 msgid "ended"
-msgstr ""
+msgstr "finalizado"
 
 #: utopia_cms_liveblog/models.py:77
 msgid "photo"
-msgstr ""
+msgstr "foto"
 
 #: utopia_cms_liveblog/models.py:78
 msgid "access"
-msgstr ""
+msgstr "acceso"
 
 #: utopia_cms_liveblog/models.py:79
 msgid "featured in home"
-msgstr ""
+msgstr "en portada"
 
 #: utopia_cms_liveblog/models.py:81
 msgid "notification"
-msgstr ""
+msgstr "notificación"
 
 #: utopia_cms_liveblog/models.py:84
-msgid ""
-"If checked and the blog status is active or to begin, shows an alert related "
-"to this blog in articles and publication home pages."
-msgstr ""
+msgid "If checked and the blog status is active or to begin, shows an alert related to this blog in articles and publication home pages."
+msgstr "Si está marcado y el estado del blog es activo o por comenzar, muestra una alerta en las páginas de artículo y portadas de publicación."
 
 #: utopia_cms_liveblog/models.py:88
 msgid "notification text"
-msgstr ""
+msgstr "texto de la notificación"
 
 #: utopia_cms_liveblog/models.py:89
 msgid "notification url"
-msgstr ""
+msgstr "url de la notificación"
 
 #: utopia_cms_liveblog/models.py:92
 msgid "notification target publications"
-msgstr ""
+msgstr "publicaciones objetivo para la notificación"
 
 #: utopia_cms_liveblog/models.py:94
-msgid ""
-"Alerts will be shown only in the pages (homes/articles) related to the "
-"publications selected."
-msgstr ""
+msgid "Alerts will be shown only in the pages (homes/articles) related to the publications selected."
+msgstr "Las alertas se mostrarán solamente en las páginas de portada o artículo de las publicaciones seleccionadas."
 
 #: utopia_cms_liveblog/models.py:98
 msgid "live blog"
-msgstr ""
+msgstr "blog en vivo"
 
 #: utopia_cms_liveblog/models.py:99
 msgid "live blogs"
-msgstr ""
+msgstr "blogs en vivo"
 
 #: utopia_cms_liveblog/models.py:117
 msgid "Only active blogs can be featured in home."
-msgstr ""
+msgstr "El blog debe estar activo para estar en portada."
 
 #: utopia_cms_liveblog/models.py:121
-msgid ""
-"There is another blog in home now, more than one blog in home is not allowed."
-msgstr ""
+msgid "There is another blog in home now, more than one blog in home is not allowed."
+msgstr "Ya existe otro blog en portada, solamente se admite un blog en portada a la vez."
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_detail.html:8
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_detail.html:134
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:5
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:21
 msgid "Live"
-msgstr ""
+msgstr "En vivo"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_detail.html:19
 msgid "Follow the live coverage of"
-msgstr ""
+msgstr "Siga la cobertura en vivo de"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:5
 msgid "coverage in real time made by"
-msgstr ""
+msgstr "las coberturas en tiempo real realizadas por"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:9
-msgid ""
-"Follow the development of the news, issues and events in real time with the "
-"journalistic view of"
-msgstr ""
+msgid "Follow the development of the news, issues and events in real time with the journalistic view of"
+msgstr "Siga el desarrollo de las noticias, temas y acontecimientos en tiempo real con la mirada periodística de"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:9
 msgid "Find up-to-date information on what is happening"
-msgstr ""
+msgstr "Encuentre información actualizada de lo que está pasando"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:19
 msgid "home"
-msgstr ""
+msgstr "portada"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:49
 msgid "on"
-msgstr ""
+msgstr "el"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:55
 msgid "No liveblogs found"
-msgstr ""
+msgstr "No se encontraron blogs en vivo"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:61
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:61
 msgid "Next page"
-msgstr ""
+msgstr "Siguiente"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_notification.html:6
 msgid "LIVE"
-msgstr ""
+msgstr "EN VIVO"
 
 #: utopia_cms_liveblog/views.py:80
-msgid ""
-"Error trying to get the metadata from the liveblog origin environment. Check "
-"if the environment is online and the blog URL is correctly set to this "
-"object."
-msgstr ""
+msgid "Error trying to get the metadata from the liveblog origin environment. Check if the environment is online and the blog URL is correctly set to this object."
+msgstr "Error al obtener los metadatos del blog desde el ambiente de origen. Compruebe que dicho ambiente está online y que la URL del blog es correcta."
