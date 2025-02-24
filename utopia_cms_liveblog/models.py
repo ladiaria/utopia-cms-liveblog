@@ -1,6 +1,7 @@
 from autoslug.fields import AutoSlugField
 from photologue.models import Photo
 
+from django.core.cache import cache
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -75,8 +76,17 @@ class LiveBlog(models.Model):
         default="idle",
     )
     image = models.ForeignKey(Photo, on_delete=models.CASCADE, verbose_name=_("photo"), blank=True, null=True)
-    access_type = models.CharField(_("access"), max_length=1, choices=LIVE_EMBED_EVENT_ACCESS_TYPES, default='s')
     in_home = models.BooleanField(_("featured in home"), default=False)
+    access_type = models.CharField(
+        _("access"),
+        max_length=1,
+        choices=LIVE_EMBED_EVENT_ACCESS_TYPES,
+        default='f',
+        help_text=_(
+            "'Paid subscriptions only' option has effect only when the blog is featured in home, when selected, only "
+            "subscribers will see the blog live timeline in the site home page."
+        ),
+    )
     notification = models.BooleanField(
         _("notification"),
         default=False,
@@ -145,6 +155,8 @@ class LiveBlog(models.Model):
         # add to history the potential new url
         if not LiveBlogUrlHistory.objects.filter(liveblog=self, absolute_url=new_url).exists():
             LiveBlogUrlHistory.objects.create(liveblog=self, absolute_url=new_url)
+        # clear cache to impact any change in home page
+        cache.clear()
         return save_result
 
 

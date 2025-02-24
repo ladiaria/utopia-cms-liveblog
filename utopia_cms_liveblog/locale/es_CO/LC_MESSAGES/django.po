@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-23 17:18-0300\n"
+"POT-Creation-Date: 2025-02-23 23:52-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: utopia_cms_liveblog/admin.py:61
 msgid "Metadata"
 msgstr "Metadatos"
@@ -126,52 +127,73 @@ msgid "photo"
 msgstr "foto"
 
 #: utopia_cms_liveblog/models.py:78
-msgid "access"
-msgstr "acceso"
-
-#: utopia_cms_liveblog/models.py:79
 msgid "featured in home"
 msgstr "en portada"
 
-#: utopia_cms_liveblog/models.py:81
+#: utopia_cms_liveblog/models.py:80
+msgid "access"
+msgstr "acceso"
+
+#: utopia_cms_liveblog/models.py:85
+msgid ""
+"'Paid subscriptions only' option has effect only when the blog is featured "
+"in home, when selected, only subscribers will see the blog live timeline in "
+"the site home page."
+msgstr ""
+"La opción 'Sólo para suscripciones pagas' tiene efecto únicamente cuando el blog está en portada, "
+"cuando está seleccionada, sólo los suscriptores verán el contenido del blog en vivo "
+"en la portada del sitio."
+
+#: utopia_cms_liveblog/models.py:90
 msgid "notification"
 msgstr "notificación"
 
-#: utopia_cms_liveblog/models.py:84
-msgid "If checked and the blog status is active or to begin, shows an alert related to this blog in articles and publication home pages."
-msgstr "Si está marcado y el estado del blog es activo o por comenzar, muestra una alerta en las páginas de artículo y portadas de publicación."
+#: utopia_cms_liveblog/models.py:93
+msgid ""
+"If checked and the blog status is active or to begin, shows an alert related "
+"to this blog in articles and publication home pages."
+msgstr ""
+"Si está marcado y el estado del blog es activo o por comenzar, muestra una "
+"alerta en las páginas de artículo y portadas de publicación."
 
-#: utopia_cms_liveblog/models.py:88
+#: utopia_cms_liveblog/models.py:97
 msgid "notification text"
 msgstr "texto de la notificación"
 
-#: utopia_cms_liveblog/models.py:89
+#: utopia_cms_liveblog/models.py:98
 msgid "notification url"
 msgstr "url de la notificación"
 
-#: utopia_cms_liveblog/models.py:92
+#: utopia_cms_liveblog/models.py:101
 msgid "notification target publications"
 msgstr "publicaciones objetivo para la notificación"
 
-#: utopia_cms_liveblog/models.py:94
-msgid "Alerts will be shown only in the pages (homes/articles) related to the publications selected."
-msgstr "Las alertas se mostrarán solamente en las páginas de portada o artículo de las publicaciones seleccionadas."
+#: utopia_cms_liveblog/models.py:103
+msgid ""
+"Alerts will be shown only in the pages (homes/articles) related to the "
+"publications selected."
+msgstr ""
+"Las alertas se mostrarán solamente en las páginas de portada o artículo de "
+"las publicaciones seleccionadas."
 
-#: utopia_cms_liveblog/models.py:98
+#: utopia_cms_liveblog/models.py:107
 msgid "live blog"
 msgstr "blog en vivo"
 
-#: utopia_cms_liveblog/models.py:99
+#: utopia_cms_liveblog/models.py:108
 msgid "live blogs"
 msgstr "blogs en vivo"
 
-#: utopia_cms_liveblog/models.py:117
+#: utopia_cms_liveblog/models.py:126
 msgid "Only active blogs can be featured in home."
 msgstr "El blog debe estar activo para estar en portada."
 
-#: utopia_cms_liveblog/models.py:121
-msgid "There is another blog in home now, more than one blog in home is not allowed."
-msgstr "Ya existe otro blog en portada, solamente se admite un blog en portada a la vez."
+#: utopia_cms_liveblog/models.py:130
+msgid ""
+"There is another blog in home now, more than one blog in home is not allowed."
+msgstr ""
+"Ya existe otro blog en portada, solamente se admite un blog en portada a la "
+"vez."
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_detail.html:8
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_detail.html:134
@@ -189,8 +211,12 @@ msgid "coverage in real time made by"
 msgstr "las coberturas en tiempo real realizadas por"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:9
-msgid "Follow the development of the news, issues and events in real time with the journalistic view of"
-msgstr "Siga el desarrollo de las noticias, temas y acontecimientos en tiempo real con la mirada periodística de"
+msgid ""
+"Follow the development of the news, issues and events in real time with the "
+"journalistic view of"
+msgstr ""
+"Siga el desarrollo de las noticias, temas y acontecimientos en tiempo real "
+"con la mirada periodística de"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:9
 msgid "Find up-to-date information on what is happening"
@@ -221,5 +247,10 @@ msgid "LIVE"
 msgstr "EN VIVO"
 
 #: utopia_cms_liveblog/views.py:80
-msgid "Error trying to get the metadata from the liveblog origin environment. Check if the environment is online and the blog URL is correctly set to this object."
-msgstr "Error al obtener los metadatos del blog desde el ambiente de origen. Compruebe que dicho ambiente está online y que la URL del blog es correcta."
+msgid ""
+"Error trying to get the metadata from the liveblog origin environment. Check "
+"if the environment is online and the blog URL is correctly set to this "
+"object."
+msgstr ""
+"Error al obtener los metadatos del blog desde el ambiente de origen. "
+"Compruebe que dicho ambiente está online y que la URL del blog es correcta."
