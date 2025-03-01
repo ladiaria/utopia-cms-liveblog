@@ -10,7 +10,7 @@
 {% endif %}
 <script src="{{ object.environment.url }}/embed.js" defer></script>
 {% spaceless %}
-  <iframe id="liveblog-iframe" src="{{ object.url }}" frameborder="0" allowfullscreen
+  <iframe id="liveblog-iframe" src="{{ object.url }}?is_frontpage={% if is_frontpage %}1{% else %}0{% endif %}" frameborder="0" allowfullscreen
     {% if disable_iframe_resizer %}
       width="100%" height="400"
     {% else %}
