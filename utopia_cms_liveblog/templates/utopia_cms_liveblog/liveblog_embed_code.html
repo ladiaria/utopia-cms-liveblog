@@ -1,4 +1,3 @@
-{# TODO: default dimensions when resizer is disabled #}
 {% if not disable_iframe_resizer %}
   <style>
     #liveblog-iframe {
@@ -6,7 +5,6 @@
       min-width: 100%;
     }
   </style>
-  {# TODO: load only if not disable_iframe_resizer (check if ok doing this) #}
   <script src="//cdn.jsdelivr.net/npm/iframe-resizer/js/iframeResizer.min.js"></script>
 {% endif %}
 <script src="{{ object.environment.url }}/embed.js" defer></script>
