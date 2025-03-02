@@ -58,8 +58,6 @@
       "headline": "{{ object }}",
       {% if object.description %}"description": "{{ object.alt_desc_og_meta|default:object.description }}",{% endif %}
       "url": "{{ SITE_URL_SD }}{{ object.get_absolute_url }}",
-      "dateModified": "{{ blog_meta.dateModified }}",
-      "coverageStartTime": "{{ blog_meta.start_date }}",
       {% if object.status == "ended" %}"coverageEndTime": "{{ blog_meta.dateModified }}",{% endif %}
       {% if blog_meta.posts %}
         "liveBlogUpdate": [
