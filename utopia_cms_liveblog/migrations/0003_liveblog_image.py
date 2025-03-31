@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('photologue', '0011_auto_20201220_1312'),
+        ('photologue', '0011_auto_20190223_2138'),
         ('utopia_cms_liveblog', '0002_auto_20221108_2335'),
     ]
 
