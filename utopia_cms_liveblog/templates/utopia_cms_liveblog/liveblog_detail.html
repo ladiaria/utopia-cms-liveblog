@@ -42,6 +42,11 @@
 
 {% block body_class %}live-blog{% endblock %}
 
+{% block base_fonts %}
+  {{ block.super }}
+  <link rel="preload" href="{% static 'cambio/fonts/NotoSerif/NotoSerif-Bold.woff2' %}" as="font" type="font/woff2" crossorigin>
+{% endblock %}
+
 {% block extra_css %}
   <style>
     body.live-blog main#main-content {
