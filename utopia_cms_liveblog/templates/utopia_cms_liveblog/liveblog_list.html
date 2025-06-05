@@ -1,5 +1,5 @@
 {% extends base_template %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block page_title %}{% spaceless %}
   {{ site.name}} {% trans "Live" %}: {% trans "coverage in real time made by" %} {{ site.name}}
@@ -8,6 +8,11 @@
 {% block page_description %}{% spaceless %}
   {% trans "Follow the development of the news, issues and events in real time with the journalistic view of" %} {{ site.name }}. {% trans "Find up-to-date information on what is happening" %}.
 {% endspaceless %}{% endblock %}
+
+{% block base_fonts %}
+  {{ block.super }}
+  <link rel="preload" href="{% static 'cambio/fonts/NotoSerif/NotoSerif-Bold.woff2' %}" as="font" type="font/woff2" crossorigin>
+{% endblock %}
 
 {% block content %}
   <div class="liveblog-list">
