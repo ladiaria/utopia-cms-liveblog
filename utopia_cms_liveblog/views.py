@@ -55,8 +55,8 @@ class LiveBlogDetail(DetailView):
                 "dateModified": blog_meta.get("last_updated_post", {}).get("_updated")
             }
             # most recent post info
-            post_meta = requests.get(api_url + "posts").json()
-            items = post_meta["_items"]  # TODO: all pages instead of 1st-only
+            post_meta = requests.get(api_url + "posts?max_results=100").json()
+            items = post_meta["_items"]  # TODO: check if we get all posts in a single request
             if len(items):
                 context["blog_meta"]["posts"] = []
                 for item in items:
@@ -71,6 +71,9 @@ class LiveBlogDetail(DetailView):
                         image_src = item_refs[1]["item"]["meta"].get("media", {}).get("_url")
                         if image_src:
                             item_meta["image_src"] = image_src
+                            image_caption = item_refs[1]["item"]["meta"].get("caption", "")
+                            if image_caption:
+                                item_meta["image_caption"] = image_caption
                     context["blog_meta"]["posts"].append(item_meta)
         except Exception as exc:
             if settings.DEBUG:

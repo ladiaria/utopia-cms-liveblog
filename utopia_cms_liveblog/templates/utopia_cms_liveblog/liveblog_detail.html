@@ -63,25 +63,32 @@
       "headline": "{{ object }}",
       {% if object.description %}"description": "{{ object.alt_desc_og_meta|default:object.description }}",{% endif %}
       "url": "{{ SITE_URL_SD }}{{ object.get_absolute_url }}",
-      "dateModified": "{{ blog_meta.dateModified }}",
+      {% if blog_meta.dateModified %}"dateModified": "{{ blog_meta.dateModified }}",{% endif %}
       "coverageStartTime": "{{ blog_meta.start_date }}",
-      {% if object.status == "ended" %}"coverageEndTime": "{{ blog_meta.dateModified }}",{% endif %}
+      {% if object.status == "ended" and blog_meta.dateModified %}"coverageEndTime": "{{ blog_meta.dateModified }}",{% endif %}
       {% if blog_meta.posts %}
         "liveBlogUpdate": [
           {% for item in blog_meta.posts %}
             {
               "@type": "BlogPosting",
+              "mainEntityOfPage": {"@type": "WebPage"},
               "articleBody": "{{ item.body }}",
               "datePublished": "{{ item.created }}",
               "dateModified": "{{ item.updated }}",
               "publisher": {
                 "@type": "Organization",
-                "name": "{{ site.name }}"
+                "name": "{{ site.name }}",
+                "url": "{{ SITE_URL }}",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url":"{{ SITE_URL_SD }}{% static default_pub.open_graph_image %}"
+                }
               },
               {% if item.image_src %}
                 "image": {
                   "@type": "ImageObject",
-                  "url": "{{ item.image_src }}"
+                  "url": "{{ item.image_src }}"{% if item.image_caption %},
+                  "caption": "{{ item.image_caption }}"{% endif %}
                 },
               {% endif %}
               "author": {
@@ -96,7 +103,6 @@
         "@type": "NewsMediaOrganization",
         "name": "{{ site.name }}",
         "url": "{{ SITE_URL }}",
-        "@id": "",
         "logo": {
           "@type": "ImageObject",
           "url":"{{ SITE_URL_SD }}{% static default_pub.open_graph_image %}"
@@ -112,21 +118,17 @@
         "name": "{{ object }}",
         "startDate": "{{ blog_meta.start_date }}",
         {% if object.status == "ended" %}"endDate": "{{ blog_meta.dateModified }}",{% endif %}
+        {% if object.description %}"description": "{{ object.alt_desc_og_meta|default:object.description }}",{% endif %}
         "location": {
           "@type": "Place",
           "name": "{{ object.location }}"
-        },
-        {% if object.image_render_allowed %}
-          "image": {
-            "@type": "ImageObject",
-            "url": "{{ SITE_URL_SD }}{{ object.image.get_article_main_url }}",
-            "width": 1200
-            {# "height": "TODO: can we obtain image height?" #}
-          },
-        {% endif %}
-        "dateModified": "{{ blog_meta.dateModified }}",
-        "coverageStartTime": "{{ blog_meta.start_date }}"{% if object.status == "ended" %},
-        "coverageEndTime": "{{ blog_meta.dateModified }}"{% endif %}
+        }{% if object.image_render_allowed %},
+        "image": {
+          "@type": "ImageObject",
+          "url": "{{ SITE_URL_SD }}{{ object.image.get_article_main_url }}",
+          "width": 1200
+          {# "height": "TODO: can we obtain image height?" #}
+        }{% endif %}
       }
     }
   </script>
