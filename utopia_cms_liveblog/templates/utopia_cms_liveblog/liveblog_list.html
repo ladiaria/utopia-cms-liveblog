@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% load i18n %}
+{% extends base_template %}
+{% load i18n static %}
 
 {% block page_title %}{% spaceless %}
   {{ site.name}} {% trans "Live" %}: {% trans "coverage in real time made by" %} {{ site.name}}
@@ -8,6 +8,11 @@
 {% block page_description %}{% spaceless %}
   {% trans "Follow the development of the news, issues and events in real time with the journalistic view of" %} {{ site.name }}. {% trans "Find up-to-date information on what is happening" %}.
 {% endspaceless %}{% endblock %}
+
+{% block base_fonts %}
+  {{ block.super }}
+  <link rel="preload" href="{% static 'cambio/fonts/NotoSerif/NotoSerif-Bold.woff2' %}" as="font" type="font/woff2" crossorigin>
+{% endblock %}
 
 {% block content %}
   <div class="liveblog-list">
@@ -22,7 +27,7 @@
       {% if tagline %}<span class="desc">{{ tagline|safe }}</span>{% endif %}
     </div>
     <div class="liveblog-list__content">
-      {% for obj in pager.object_list %}
+      {% for obj in object_list %}
         <div class="liveblog-item">
           {% if obj.image_render_allowed %}
             <a href="{{ obj.get_absolute_url }}" title="{{ obj }}" class="liveblog-img">
@@ -50,11 +55,15 @@
             </span>
           </div>
         </div>
+      {% empty %}
+        <div class="align-center">
+          <p>{% trans "No liveblogs found" %}</p>
+        </div>
       {% endfor %}
     </div>
-    {% if pager.has_other_pages %}
+    {% if page_obj.has_other_pages %}
       <div class="align-center pagination-container">
-        {% include "pagination.html" with page_param='page' previous_label=_('Previous') next_label=_('Next page') %}
+        {% include pagination_template with page_param='page' previous_label=_('Previous') next_label=_('Next page') %}
       </div>
     {% endif %}
   </div>

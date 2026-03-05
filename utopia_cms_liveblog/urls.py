@@ -1,12 +1,12 @@
 from django.urls import path, re_path
 from utopia_cms_liveblog.views import (
-    liveblog_list, LiveBlogDetail, notification, notification_closed, notification_others_closed
+    LiveBlogList, LiveBlogDetail, notification, notification_closed, notification_others_closed
 )
 
 
-def get_urlpatterns(detail_class=LiveBlogDetail):
+def get_urlpatterns(detail_class=LiveBlogDetail, list_class=LiveBlogList):
     return [
-        path('', liveblog_list),
+        path('', list_class.as_view(), name='liveblog-list'),
         re_path(r'^notification/(?P<publication_slug>[-\w]+)/$', notification, name='liveblog-notification'),
         path('liveblog/<int:liveblog_id>/closed/', notification_closed, name='liveblog-notification-closed'),
         path(
