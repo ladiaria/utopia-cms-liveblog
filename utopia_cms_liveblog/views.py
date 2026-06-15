@@ -45,19 +45,22 @@ class LiveBlogDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context, obj = super().get_context_data(**kwargs), self.get_object()
+        # Don't let a slow/unreachable origin environment hang the whole page: without
+        # a timeout requests.get blocks forever and the broad except below never runs.
+        timeout = getattr(settings, "UTOPIA_CMS_LIVEBLOG_API_TIMEOUT", 5)
         try:
             api_url = "%s/api/client_blogs/%s/" % (
                 obj.environment.url,
                 PurePosixPath(urlparse(obj.url).path).parts[-1],
             )
-            blog_meta = requests.get(api_url).json()
+            blog_meta = requests.get(api_url, timeout=timeout).json()
             # get only needed meta entries
             context["blog_meta"] = {
                 "start_date": blog_meta.get("start_date"),
                 "dateModified": blog_meta.get("last_updated_post", {}).get("_updated")
             }
             # most recent post info
-            post_meta = requests.get(api_url + "posts").json()
+            post_meta = requests.get(api_url + "posts", timeout=timeout).json()
             items = post_meta["_items"]  # TODO: all pages instead of 1st-only
             if len(items):
                 context["blog_meta"]["posts"] = []
