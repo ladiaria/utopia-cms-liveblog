@@ -42,9 +42,7 @@
               {% elif obj.status == "to_begin" %}
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><circle cx="5" cy="5" r="2.5" stroke="#b00000"/></svg>
               {% elif obj.status == "idle" %}
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5.83333 7.91668H7.5V2.08334H5.83333M2.5 7.91668H4.16667V2.08334H2.5V7.91668Z" fill="#A4A4A4"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="#a4a4a4" d="M5.833 7.917H7.5V2.083H5.833M2.5 7.917h1.667V2.083H2.5z"/></svg>
               {% endif %}
               {{ obj.get_status_display }}{% if obj.status == "ended" %} {% trans "on" %} {{ obj.day }}{% endif %}
             </span>
