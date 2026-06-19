@@ -9,17 +9,21 @@
   {% trans "Follow the development of the news, issues and events in real time with the journalistic view of" %} {{ site.name }}. {% trans "Find up-to-date information on what is happening" %}.
 {% endspaceless %}{% endblock %}
 
+{% block body_class %}liveblog-list{% endblock %}
+
 {% block content %}
   <div class="liveblog-list">
     <div class="liveblog-list__head">
-      <a href="{% url 'home' %}" class="section-detail__toplink">
-        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="13" viewBox="15451.996 -3655.987 6.105 9.902">
-          <path d="M773.155,7312l3.8,3.8,3.8-3.8,1.155,1.155-4.951,4.951L772,7313.155l1.155-1.155" transform="translate(22770.102 -4427.987) rotate(90)" fill="#595959"></path>
-        </svg>
-        {% trans "home" %}
-      </a>
-      <h1 class="title">{% trans "Live" %}</h1>
-      {% if tagline %}<span class="desc">{{ tagline|safe }}</span>{% endif %}
+      <div class="liveblog-list__head-inner">
+        <a href="{% url 'home' %}" class="section-detail__toplink">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          {% trans "Back" %}
+        </a>
+        <h1 class="title">{% trans "Live" %}</h1>
+        {% if tagline %}<span class="desc">{{ tagline|safe }}</span>{% endif %}
+      </div>
     </div>
     <div class="liveblog-list__content">
       {% for obj in pager.object_list %}
@@ -34,13 +38,9 @@
             {% if obj.description %}<span class="desc">{{ obj.description }}</span>{% endif %}
             <span class="{{ obj.status }}">
               {% if obj.status == "ended" %}
-                <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7.74967 0.916663L2.74967 5.91666L0.458008 3.625L1.04551 3.0375L2.74967 4.7375L7.16217 0.329163L7.74967 0.916663Z" fill="#A4A4A4"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" fill="none" viewBox="0 0 8 6"><path fill="#a4a4a4" d="m7.75.917-5 5L.458 3.625l.588-.587 1.704 1.7L7.162.329z"/></svg>
               {% elif obj.status == "to_begin" %}
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="5" cy="5" r="2.5" stroke="#B00000"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><circle cx="5" cy="5" r="2.5" stroke="#b00000"/></svg>
               {% elif obj.status == "idle" %}
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M5.83333 7.91668H7.5V2.08334H5.83333M2.5 7.91668H4.16667V2.08334H2.5V7.91668Z" fill="#A4A4A4"/>
