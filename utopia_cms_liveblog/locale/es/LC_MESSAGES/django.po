@@ -208,9 +208,9 @@ msgstr ""
 msgid "Find up-to-date information on what is happening"
 msgstr "Encontrá información actualizada de lo que está pasando"
 
-#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:19
-msgid "home"
-msgstr "portada"
+#: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:20
+msgid "Back"
+msgstr "Volver"
 
 #: utopia_cms_liveblog/templates/utopia_cms_liveblog/liveblog_list.html:49
 msgid "on"
