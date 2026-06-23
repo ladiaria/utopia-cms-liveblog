@@ -138,6 +138,8 @@
       {% if object.description %}<h2 class="desc">{{ object.description }}</h2>{% endif %}
     </div>
     {% endblock %}
-    {% liveblog_embed_code object %}
+    <div class="liveblog-object-container">
+      {% liveblog_embed_code object %}
+    </div>
   </div>
 {% endblock %}
